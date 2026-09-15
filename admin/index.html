@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin | Cantinho Planejado</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #070707;
+      --card: #111;
+      --card2: #171717;
+      --border: #2b2b2b;
+      --text: #fff;
+      --muted: #aaa;
+      --wood: #c89d69;
+      --wood2: #8b6039;
+      --green: #39d27d;
+      --red: #ff5555;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGIN */
+
+    #loginArea {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: 35px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+
+      background: linear-gradient(
+        135deg,
+        var(--wood),
+        var(--wood2)
+      );
+
+      color: #111;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .login-card h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 7px;
+      color: #ccc;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      background: #171717;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 14px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--wood);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(
+        135deg,
+        var(--wood),
+        var(--wood2)
+      );
+      color: #111;
+    }
+
+    .btn-dark {
+      background: #222;
+      color: white;
+      border: 1px solid #333;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #07170d;
+    }
+
+    .btn-red {
+      background: #2b1111;
+      color: #ff8b8b;
+      border: 1px solid #5a2222;
+    }
+
+    .error {
+      margin-top: 15px;
+      color: #ff7777;
+      font-size: 14px;
+    }
+
+    /* ADMIN */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(7,7,7,.92);
+      border-bottom: 1px solid #222;
+      backdrop-filter: blur(15px);
+    }
+
+    .header-inner {
+      max-width: 1250px;
+      margin: auto;
+      padding: 17px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+
+      display: grid;
+      place-items: center;
+
+      background: linear-gradient(
+        135deg,
+        var(--wood),
+        var(--wood2)
+      );
+
+      color: #111;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome h1 {
+      font-size: 36px;
+      margin-bottom: 5px;
+    }
+
+    .welcome p {
+      color: var(--muted);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 11px 16px;
+      background: #111;
+      color: #ccc;
+      border: 1px solid #292929;
+      border-radius: 10px;
+    }
+
+    .tab.active {
+      background: white;
+      color: black;
+      font-weight: bold;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .panel h2 {
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .save-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    /* PROJETOS */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .project-card {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #222;
+    }
+
+    .project-content {
+      padding: 16px;
+    }
+
+    .project-content small {
+      color: var(--wood);
+    }
+
+    .project-content h3 {
+      margin: 6px 0;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .actions button {
+      flex: 1;
+    }
+
+    .status {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+
+      background: white;
+      color: black;
+
+      padding: 13px 18px;
+      border-radius: 12px;
+
+      font-weight: bold;
+
+      transform: translateY(100px);
+      opacity: 0;
+
+      transition: .25s;
+      z-index: 500;
+    }
+
+    .status.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media(max-width: 850px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h1 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="loginArea">
+
+  <div class="login-card">
+
+    <div class="logo">
+      P
+    </div>
+
+    <h1>Painel Admin</h1>
+
+    <p>
+      Entre com sua conta cadastrada no Firebase.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="field">
+
+        <label>E-mail</label>
+
+        <input
+          type="email"
+          id="email"
+          required
+          placeholder="seuemail@email.com"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label>Senha</label>
+
+        <input
+          type="password"
+          id="senha"
+          required
+          placeholder="Sua senha"
+        >
+
+      </div>
+
+
+      <button class="btn btn-primary">
+        Entrar no painel
+      </button>
+
+      <div
+        class="error"
+        id="loginError"
+      ></div>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<!-- PAINEL -->
+
+<section
+  id="adminArea"
+  class="hidden"
+>
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        P
+      </div>
+
+      <span>
+        Cantinho Planejado
+      </span>
+
+    </div>
+
+
+    <button
+      class="btn btn-dark"
+      id="logoutBtn"
+    >
+      Sair
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="container">
+
+  <div class="welcome">
+
+    <h1>
+      Painel administrativo
+    </h1>
+
+    <p id="adminEmail">
+      Administrador conectado
+    </p>
+
+  </div>
+
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      data-page="config"
+    >
+      Configurações
+    </button>
+
+    <button
+      class="tab"
+      data-page="projects"
+    >
+      Projetos
+    </button>
+
+  </div>
+
+
+
+  <!-- CONFIGURAÇÕES -->
+
+  <div id="configPage">
+
+    <div class="panel">
+
+      <h2>
+        Informações do site
+      </h2>
+
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label>
+            Nome da empresa
+          </label>
+
+          <input
+            id="siteName"
+            placeholder="Cantinho Planejado"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            WhatsApp
+          </label>
+
+          <input
+            id="whatsapp"
+            placeholder="5512999999999"
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Título principal
+          </label>
+
+          <input
+            id="heroTitle"
+            placeholder="Seu ambiente. Do seu jeito."
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Descrição principal
+          </label>
+
+          <textarea
+            id="heroDescription"
+            placeholder="Criamos móveis planejados..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Cidade
+          </label>
+
+          <input
+            id="city"
+            placeholder="Sua cidade"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Instagram
+          </label>
+
+          <input
+            id="instagram"
+            placeholder="@suaempresa"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="save-row">
+
+        <button
+          class="btn btn-green"
+          id="saveConfig"
+        >
+          Salvar alterações
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- PROJETOS -->
+
+  <div
+    id="projectsPage"
+    class="hidden"
+  >
+
+    <div class="panel">
+
+      <h2>
+        Adicionar projeto
+      </h2>
+
+
+      <input
+        type="hidden"
+        id="projectId"
+      >
+
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label>
+            Nome do projeto
+          </label>
+
+          <input
+            id="projectTitle"
+            placeholder="Cozinha moderna"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Categoria
+          </label>
+
+          <select id="projectCategory">
+
+            <option value="cozinha">
+              Cozinha
+            </option>
+
+            <option value="quarto">
+              Quarto
+            </option>
+
+            <option value="sala">
+              Sala
+            </option>
+
+            <option value="banheiro">
+              Banheiro
+            </option>
+
+            <option value="escritorio">
+              Escritório
+            </option>
+
+            <option value="outro">
+              Outro
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Link da imagem
+          </label>
+
+          <input
+            id="projectImage"
+            placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Descrição
+          </label>
+
+          <textarea
+            id="projectDescription"
+            placeholder="Descrição do projeto..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="save-row"
+        style="gap:10px"
+      >
+
+        <button
+          class="btn btn-dark hidden"
+          id="cancelEdit"
+        >
+          Cancelar
+        </button>
+
+        <button
+          class="btn btn-green"
+          id="saveProject"
+        >
+          Adicionar projeto
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h2>
+        Projetos cadastrados
+      </h2>
+
+      <div
+        class="projects"
+        id="projectsList"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<div
+  class="status"
+  id="status"
+>
+  Salvo!
+</div>
+
+
+
+<script type="module">
+
+  /*
+  ===========================================
+  FIREBASE
+  ===========================================
+  */
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+  import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    addDoc,
+    getDocs,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyCHMQQMXUj8rnazFzUtFnsuFyre-O8HKyY",
+
+    authDomain:
+      "black7-3aea6.firebaseapp.com",
+
+    projectId:
+      "black7-3aea6",
+
+    storageBucket:
+      "black7-3aea6.firebasestorage.app",
+
+    messagingSenderId:
+      "600503554842",
+
+    appId:
+      "1:600503554842:web:7bfb5a1f9ce972d19252a3",
+
+    measurementId:
+      "G-WBQLPPKR18"
+
+  };
+
+
+  const app =
+    initializeApp(firebaseConfig);
+
+  const auth =
+    getAuth(app);
+
+  const db =
+    getFirestore(app);
+
+
+
+  /*
+  ===========================================
+  UID DO ADMIN
+  ===========================================
+  */
+
+  const ADMIN_UID =
+    "reqyRV9d4whiCcfhsDS1WmcC9ys2";
+
+
+
+  /*
+  ===========================================
+  ELEMENTOS
+  ===========================================
+  */
+
+  const loginArea =
+    document.getElementById("loginArea");
+
+  const adminArea =
+    document.getElementById("adminArea");
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  const loginError =
+    document.getElementById("loginError");
+
+  const status =
+    document.getElementById("status");
+
+
+
+  /*
+  ===========================================
+  MENSAGEM
+  ===========================================
+  */
+
+  function showStatus(message) {
+
+    status.textContent = message;
+
+    status.classList.add("show");
+
+    setTimeout(() => {
+
+      status.classList.remove("show");
+
+    }, 2200);
+
+  }
+
+
+
+  /*
+  ===========================================
+  LOGIN
+  ===========================================
+  */
+
+  loginForm.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+      loginError.textContent = "";
+
+
+      const email =
+        document.getElementById("email")
+        .value.trim();
+
+      const senha =
+        document.getElementById("senha")
+        .value;
+
+
+      try {
+
+        const credential =
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            senha
+          );
+
+
+        if (
+          credential.user.uid !==
+          ADMIN_UID
+        ) {
+
+          await signOut(auth);
+
+          loginError.textContent =
+            "Esta conta não possui acesso administrativo.";
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        loginError.textContent =
+          "E-mail ou senha incorretos.";
+
+      }
+
+    }
+  );
+
+
+
+  /*
+  ===========================================
+  VERIFICAR LOGIN
+  ===========================================
+  */
+
+  onAuthStateChanged(
+    auth,
+    async user => {
+
+      if (
+        user &&
+        user.uid === ADMIN_UID
+      ) {
+
+        loginArea.classList.add(
+          "hidden"
+        );
+
+        adminArea.classList.remove(
+          "hidden"
+        );
+
+        document.getElementById(
+          "adminEmail"
+        ).textContent =
+          user.email;
+
+        await loadConfig();
+
+        await loadProjects();
+
+      }
+
+      else {
+
+        adminArea.classList.add(
+          "hidden"
+        );
+
+        loginArea.classList.remove(
+          "hidden"
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /*
+  ===========================================
+  SAIR
+  ===========================================
+  */
+
+  document.getElementById(
+    "logoutBtn"
+  ).addEventListener(
+    "click",
+    async () => {
+
+      await signOut(auth);
+
+    }
+  );
+
+
+
+  /*
+  ===========================================
+  ABAS
+  ===========================================
+  */
+
+  const tabs =
+    document.querySelectorAll(".tab");
+
+
+  tabs.forEach(tab => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        tabs.forEach(t =>
+          t.classList.remove("active")
+        );
+
+        tab.classList.add("active");
+
+
+        const page =
+          tab.dataset.page;
+
+
+        document
+          .getElementById("configPage")
+          .classList.toggle(
+            "hidden",
+            page !== "config"
+          );
+
+
+        document
+          .getElementById("projectsPage")
+          .classList.toggle(
+            "hidden",
+            page !== "projects"
+          );
+
+      }
+    );
+
+  });
+
+
+
+  /*
+  ===========================================
+  CARREGAR CONFIGURAÇÕES
+  ===========================================
+  */
+
+  async function loadConfig() {
+
+    try {
+
+      const configRef =
+        doc(
+          db,
+          "moveis_config",
+          "site"
+        );
+
+
+      const snapshot =
+        await getDoc(configRef);
+
+
+      if (!snapshot.exists()) {
+
+        return;
+
+      }
+
+
+      const data =
+        snapshot.data();
+
+
+      document.getElementById(
+        "siteName"
+      ).value =
+        data.siteName || "";
+
+
+      document.getElementById(
+        "whatsapp"
+      ).value =
+        data.whatsapp || "";
+
+
+      document.getElementById(
+        "heroTitle"
+      ).value =
+        data.heroTitle || "";
+
+
+      document.getElementById(
+        "heroDescription"
+      ).value =
+        data.heroDescription || "";
+
+
+      document.getElementById(
+        "city"
+      ).value =
+        data.city || "";
+
+
+      document.getElementById(
+        "instagram"
+      ).value =
+        data.instagram || "";
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      showStatus(
+        "Erro ao carregar configurações"
+      );
+
+    }
+
+  }
+
+
+
+  /*
+  ===========================================
+  SALVAR CONFIGURAÇÕES
+  ===========================================
+  */
+
+  document.getElementById(
+    "saveConfig"
+  ).addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        const data = {
+
+          siteName:
+            document.getElementById(
+              "siteName"
+            ).value.trim(),
+
+          whatsapp:
+            document.getElementById(
+              "whatsapp"
+            ).value.trim(),
+
+          heroTitle:
+            document.getElementById(
+              "heroTitle"
+            ).value.trim(),
+
+          heroDescription:
+            document.getElementById(
+              "heroDescription"
+            ).value.trim(),
+
+          city:
+            document.getElementById(
+              "city"
+            ).value.trim(),
+
+          instagram:
+            document.getElementById(
+              "instagram"
+            ).value.trim(),
+
+          updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        await setDoc(
+
+          doc(
+            db,
+            "moveis_config",
+            "site"
+          ),
+
+          data,
+
+          {
+            merge: true
+          }
+
+        );
+
+
+        showStatus(
+          "Alterações salvas!"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        showStatus(
+          "Erro ao salvar"
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /*
+  ===========================================
+  SALVAR PROJETO
+  ===========================================
+  */
+
+  document.getElementById(
+    "saveProject"
+  ).addEventListener(
+    "click",
+    async () => {
+
+      const id =
+        document.getElementById(
+          "projectId"
+        ).value;
+
+
+      const title =
+        document.getElementById(
+          "projectTitle"
+        ).value.trim();
+
+
+      const category =
+        document.getElementById(
+          "projectCategory"
+        ).value;
+
+
+      const image =
+        document.getElementById(
+          "projectImage"
+        ).value.trim();
+
+
+      const description =
+        document.getElementById(
+          "projectDescription"
+        ).value.trim();
+
+
+      if (
+        !title ||
+        !image
+      ) {
+
+        showStatus(
+          "Preencha nome e imagem"
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const data = {
+
+          title,
+          category,
+          image,
+          description,
+
+          updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        if (id) {
+
+          await updateDoc(
+
+            doc(
+              db,
+              "moveis_projetos",
+              id
+            ),
+
+            data
+
+          );
+
+
+          showStatus(
+            "Projeto atualizado!"
+          );
+
+        }
+
+        else {
+
+          data.createdAt =
+            serverTimestamp();
+
+
+          await addDoc(
+
+            collection(
+              db,
+              "moveis_projetos"
+            ),
+
+            data
+
+          );
+
+
+          showStatus(
+            "Projeto criado!"
+          );
+
+        }
+
+
+        clearProjectForm();
+
+        await loadProjects();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        showStatus(
+          "Erro ao salvar projeto"
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /*
+  ===========================================
+  CARREGAR PROJETOS
+  ===========================================
+  */
+
+  async function loadProjects() {
+
+    const list =
+      document.getElementById(
+        "projectsList"
+      );
+
+
+    list.innerHTML =
+      "Carregando...";
+
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "moveis_projetos"
+          )
+        );
+
+
+      list.innerHTML = "";
+
+
+      if (snapshot.empty) {
+
+        list.innerHTML =
+          "<p style='color:#aaa'>Nenhum projeto cadastrado.</p>";
+
+        return;
+
+      }
+
+
+      snapshot.forEach(
+        documentSnapshot => {
+
+          const data =
+            documentSnapshot.data();
+
+          const id =
+            documentSnapshot.id;
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "project-card";
+
+
+          card.innerHTML = `
+
+            <img
+              src="${escapeHTML(data.image || "")}"
+              alt="Projeto"
+              onerror="this.style.display='none'"
+            >
+
+            <div class="project-content">
+
+              <small>
+                ${escapeHTML(data.category || "")}
+              </small>
+
+              <h3>
+                ${escapeHTML(data.title || "")}
+              </h3>
+
+              <p>
+                ${escapeHTML(data.description || "")}
+              </p>
+
+              <div class="actions">
+
+                <button
+                  class="btn btn-dark edit-btn"
+                >
+                  Editar
+                </button>
+
+                <button
+                  class="btn btn-red delete-btn"
+                >
+                  Excluir
+                </button>
+
+              </div>
+
+            </div>
+          `;
+
+
+          card.querySelector(
+            ".edit-btn"
+          ).addEventListener(
+            "click",
+            () => {
+
+              editProject(
+                id,
+                data
+              );
+
+            }
+          );
+
+
+          card.querySelector(
+            ".delete-btn"
+          ).addEventListener(
+            "click",
+            () => {
+
+              deleteProject(id);
+
+            }
+          );
+
+
+          list.appendChild(card);
+
+        }
+      );
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      list.innerHTML =
+        "<p>Erro ao carregar projetos.</p>";
+
+    }
+
+  }
+
+
+
+  /*
+  ===========================================
+  EDITAR PROJETO
+  ===========================================
+  */
+
+  function editProject(
+    id,
+    data
+  ) {
+
+    document.getElementById(
+      "projectId"
+    ).value =
+      id;
+
+
+    document.getElementById(
+      "projectTitle"
+    ).value =
+      data.title || "";
+
+
+    document.getElementById(
+      "projectCategory"
+    ).value =
+      data.category || "cozinha";
+
+
+    document.getElementById(
+      "projectImage"
+    ).value =
+      data.image || "";
+
+
+    document.getElementById(
+      "projectDescription"
+    ).value =
+      data.description || "";
+
+
+    document.getElementById(
+      "saveProject"
+    ).textContent =
+      "Salvar alterações";
+
+
+    document.getElementById(
+      "cancelEdit"
+    ).classList.remove(
+      "hidden"
+    );
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+
+  /*
+  ===========================================
+  CANCELAR EDIÇÃO
+  ===========================================
+  */
+
+  document.getElementById(
+    "cancelEdit"
+  ).addEventListener(
+    "click",
+    clearProjectForm
+  );
+
+
+  function clearProjectForm() {
+
+    document.getElementById(
+      "projectId"
+    ).value = "";
+
+
+    document.getElementById(
+      "projectTitle"
+    ).value = "";
+
+
+    document.getElementById(
+      "projectImage"
+    ).value = "";
+
+
+    document.getElementById(
+      "projectDescription"
+    ).value = "";
+
+
+    document.getElementById(
+      "projectCategory"
+    ).value =
+      "cozinha";
+
+
+    document.getElementById(
+      "saveProject"
+    ).textContent =
+      "Adicionar projeto";
+
+
+    document.getElementById(
+      "cancelEdit"
+    ).classList.add(
+      "hidden"
+    );
+
+  }
+
+
+
+  /*
+  ===========================================
+  EXCLUIR
+  ===========================================
+  */
+
+  async function deleteProject(id) {
+
+    const confirmation =
+      confirm(
+        "Deseja realmente excluir este projeto?"
+      );
+
+
+    if (!confirmation) {
+
+      return;
+
+    }
+
+
+    try {
+
+      await deleteDoc(
+
+        doc(
+          db,
+          "moveis_projetos",
+          id
+        )
+
+      );
+
+
+      showStatus(
+        "Projeto excluído!"
+      );
+
+
+      await loadProjects();
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      showStatus(
+        "Erro ao excluir"
+      );
+
+    }
+
+  }
+
+
+
+  /*
+  ===========================================
+  SEGURANÇA BÁSICA DO HTML
+  ===========================================
+  */
+
+  function escapeHTML(value) {
+
+    return String(value)
+
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+</script>
+
+</body>
+</html>
