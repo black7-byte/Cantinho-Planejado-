@@ -1,355 +1,2562 @@
-from pathlib import Path
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-src = Path("/mnt/data/Texto colado(6).txt")
-text = src.read_text(encoding="utf-8")
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-gallery_css = """
-    /* GALERIA DOS PROJETOS */
-    .project { cursor: pointer; }
+  <title>Cantinho Planejado | Móveis sob medida</title>
 
-    .project::after {
-      content: "Clique para ver mais fotos";
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 4;
-      background: rgba(0,0,0,.72);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.18);
+  <style>
+    :root {
+      --bg: #070707;
+      --card: #111;
+      --border: #292929;
+      --text: #fff;
+      --muted: #aaa;
+      --wood: #c89d69;
+      --wood2: #8b6039;
+      --green: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 30px));
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(7, 7, 7, 0.92);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid #222;
+    }
+
+    .nav {
+      min-height: 75px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-weight: bold;
+    }
+
+    .logo {
+      width: 43px;
+      height: 43px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 13px;
+
+      background: linear-gradient(
+        135deg,
+        var(--wood),
+        var(--wood2)
+      );
+
+      color: #111;
+
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .brand small {
+      display: block;
+
+      font-size: 10px;
+
+      color: #aaa;
+
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+
+      color: #ccc;
+
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* BOTÕES */
+
+    .btn {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 18px;
+
+      border-radius: 13px;
+
+      font-weight: bold;
+
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-white {
+      background: white;
+      color: #111;
+    }
+
+    .btn-wood {
+      background: linear-gradient(
+        135deg,
+        var(--wood),
+        var(--wood2)
+      );
+
+      color: #111;
+    }
+
+    .btn-dark {
+      background: #111;
+
+      color: white;
+
+      border: 1px solid #333;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 80px 0;
+
+      min-height: 660px;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns: 1.05fr 0.95fr;
+
+      gap: 50px;
+
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: #e8d2b5;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      font-size: 13px;
+
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 7vw, 80px);
+
+      line-height: 1;
+
+      letter-spacing: -3px;
+    }
+
+    .accent {
+      display: block;
+
+      color: var(--wood);
+    }
+
+    .hero-text {
+      color: var(--muted);
+
+      font-size: 18px;
+
+      max-width: 620px;
+
+      margin: 25px 0 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    .chips {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top: 28px;
+    }
+
+    .chip {
+      background: #101010;
+
+      border: 1px solid #2b2b2b;
+
       border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 11px;
-      opacity: 0;
-      transform: translateY(-5px);
-      transition: .2s;
-      pointer-events: none;
-      backdrop-filter: blur(8px);
+
+      padding: 9px 12px;
+
+      color: #ccc;
+
+      font-size: 13px;
     }
 
-    .project:hover::after {
-      opacity: 1;
-      transform: translateY(0);
+    .hero-image {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      border: 1px solid #333;
     }
+
+    .hero-image img {
+      height: 530px;
+
+      object-fit: cover;
+    }
+
+    .hero-image::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85),
+        transparent 50%
+      );
+    }
+
+    .hero-info {
+      position: absolute;
+
+      left: 25px;
+      bottom: 25px;
+
+      z-index: 2;
+    }
+
+    .hero-info span {
+      color: #ccc;
+
+      font-size: 13px;
+    }
+
+    .hero-info strong {
+      display: block;
+
+      font-size: 23px;
+    }
+
+    /* SEÇÕES */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-head {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: end;
+
+      gap: 25px;
+
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(32px, 5vw, 52px);
+
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      color: var(--muted);
+
+      max-width: 500px;
+    }
+
+    /* BENEFÍCIOS */
+
+    .benefits {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 14px;
+    }
+
+    .benefit {
+      padding: 24px;
+
+      border-radius: 20px;
+
+      background: #111;
+
+      border: 1px solid var(--border);
+    }
+
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+
+      border-radius: 13px;
+
+      display: grid;
+      place-items: center;
+
+      background: #1d1d1d;
+
+      color: var(--wood);
+
+      margin-bottom: 17px;
+
+      font-size: 20px;
+    }
+
+    .benefit p {
+      color: var(--muted);
+
+      font-size: 14px;
+
+      margin-top: 7px;
+    }
+
+    /* FILTROS */
+
+    .filters {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-bottom: 25px;
+    }
+
+    .filter {
+      background: #101010;
+
+      color: #ccc;
+
+      border: 1px solid #2c2c2c;
+
+      border-radius: 999px;
+
+      padding: 10px 14px;
+    }
+
+    .filter.active {
+      background: white;
+
+      color: black;
+    }
+
+    /* PROJETOS */
+
+    .projects {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .project {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 22px;
+
+      border: 1px solid var(--border);
+
+      cursor: pointer;
+
+      min-height: 390px;
+    }
+
+    .project img {
+      height: 390px;
+
+      object-fit: cover;
+
+      transition: 0.4s;
+    }
+
+    .project:hover img {
+      transform: scale(1.05);
+    }
+
+    .project::before {
+      content: "Ver fotos";
+
+      position: absolute;
+
+      top: 15px;
+      right: 15px;
+
+      z-index: 5;
+
+      background: rgba(0, 0, 0, 0.7);
+
+      padding: 7px 11px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .project-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+
+      align-items: end;
+
+      padding: 22px;
+
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9),
+        transparent 60%
+      );
+    }
+
+    .tag {
+      display: inline-block;
+
+      padding: 6px 10px;
+
+      margin-bottom: 8px;
+
+      border-radius: 999px;
+
+      background: rgba(0, 0, 0, 0.6);
+
+      border: 1px solid #555;
+
+      font-size: 12px;
+    }
+
+    .project h3 {
+      font-size: 22px;
+    }
+
+    .project p {
+      color: #ddd;
+
+      font-size: 13px;
+    }
+
+    /* ETAPAS */
+
+    .steps {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 14px;
+
+      counter-reset: etapa;
+    }
+
+    .step {
+      counter-increment: etapa;
+
+      background: #101010;
+
+      border: 1px solid #282828;
+
+      border-radius: 20px;
+
+      padding: 25px;
+    }
+
+    .step::before {
+      content: "0" counter(etapa);
+
+      display: block;
+
+      color: var(--wood);
+
+      font-size: 32px;
+
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+    .step p {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* ORÇAMENTO */
+
+    .quote {
+      display: grid;
+
+      grid-template-columns: 0.9fr 1.1fr;
+
+      overflow: hidden;
+
+      border: 1px solid #2a2a2a;
+
+      border-radius: 28px;
+
+      background: #0e0e0e;
+    }
+
+    .quote-info {
+      padding: 45px;
+
+      background: #111;
+    }
+
+    .quote-info h2 {
+      font-size: clamp(34px, 5vw, 52px);
+
+      line-height: 1.05;
+
+      margin-bottom: 18px;
+    }
+
+    .quote-info p {
+      color: var(--muted);
+    }
+
+    .quote-form {
+      padding: 40px;
+    }
+
+    .form-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: #ccc;
+
+      font-size: 13px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+
+      padding: 14px;
+
+      border: 1px solid #303030;
+
+      border-radius: 13px;
+
+      background: #151515;
+
+      color: white;
+
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 120px;
+
+      resize: vertical;
+    }
+
+    .quote-form button {
+      width: 100%;
+
+      border: none;
+
+      cursor: pointer;
+
+      margin-top: 16px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      max-width: 850px;
+
+      margin: auto;
+
+      display: grid;
+
+      gap: 10px;
+    }
+
+    details {
+      padding: 18px 20px;
+
+      border-radius: 16px;
+
+      border: 1px solid #282828;
+
+      background: #101010;
+    }
+
+    summary {
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    details p {
+      color: var(--muted);
+
+      margin-top: 12px;
+    }
+
+    /* GALERIA */
 
     .gallery-modal {
       position: fixed;
+
       inset: 0;
+
       z-index: 5000;
-      background: rgba(0,0,0,.94);
+
       display: none;
-      align-items: center;
+
       justify-content: center;
+      align-items: center;
+
       padding: 20px;
+
+      background: rgba(0, 0, 0, 0.95);
+
       backdrop-filter: blur(8px);
     }
 
-    .gallery-modal.open { display: flex; }
+    .gallery-modal.open {
+      display: flex;
+    }
 
     .gallery-box {
       width: min(1100px, 100%);
-      position: relative;
     }
 
     .gallery-main {
       position: relative;
+
       overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid #2c2c2c;
-      background: #0c0c0c;
-      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+
+      border-radius: 25px;
+
+      border: 1px solid #333;
+
+      background: #111;
     }
 
     .gallery-main img {
       width: 100%;
+
       height: min(72vh, 700px);
+
       object-fit: cover;
-      display: block;
     }
 
     .gallery-caption {
       position: absolute;
+
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 55px 24px 22px;
-      background: linear-gradient(to top, rgba(0,0,0,.88), transparent);
+
+      padding: 60px 25px 25px;
+
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.92),
+        transparent
+      );
     }
 
     .gallery-caption small {
       color: var(--wood);
-      display: block;
-      margin-bottom: 4px;
+
       font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .gallery-caption h3 {
-      font-size: clamp(22px, 4vw, 34px);
-    }
-
-    .gallery-close,
-    .gallery-arrow {
-      position: absolute;
-      z-index: 6;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.68);
-      color: white;
-      backdrop-filter: blur(8px);
-      cursor: pointer;
+      font-size: 30px;
     }
 
     .gallery-close {
-      top: 16px;
-      right: 16px;
-      width: 46px;
-      height: 46px;
+      position: absolute;
+
+      top: 15px;
+      right: 15px;
+
+      z-index: 10;
+
+      width: 48px;
+      height: 48px;
+
       border-radius: 50%;
-      font-size: 24px;
+
+      border: 1px solid #555;
+
+      background: rgba(0, 0, 0, 0.75);
+
+      color: white;
+
+      font-size: 26px;
     }
 
     .gallery-arrow {
+      position: absolute;
+
       top: 50%;
+
+      z-index: 10;
+
       transform: translateY(-50%);
+
       width: 50px;
-      height: 58px;
+      height: 60px;
+
       border-radius: 14px;
-      font-size: 28px;
+
+      border: 1px solid #555;
+
+      background: rgba(0, 0, 0, 0.72);
+
+      color: white;
+
+      font-size: 30px;
     }
 
-    .gallery-prev { left: 16px; }
-    .gallery-next { right: 16px; }
+    .gallery-prev {
+      left: 15px;
+    }
+
+    .gallery-next {
+      right: 15px;
+    }
 
     .gallery-thumbs {
       display: grid;
+
       grid-template-columns: repeat(5, 1fr);
+
       gap: 10px;
+
       margin-top: 12px;
     }
 
     .gallery-thumb {
-      border: 2px solid transparent;
-      border-radius: 12px;
-      overflow: hidden;
       padding: 0;
+
+      border: 2px solid transparent;
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
       background: #111;
-      cursor: pointer;
-      opacity: .65;
-      transition: .2s;
+
+      opacity: 0.6;
     }
 
     .gallery-thumb.active {
-      border-color: var(--wood);
       opacity: 1;
+
+      border-color: var(--wood);
     }
 
     .gallery-thumb img {
       width: 100%;
+
       height: 90px;
+
       object-fit: cover;
     }
 
-    @media(max-width:650px) {
-      .project::after {
-        opacity: 1;
-        transform: none;
+    /* WHATSAPP */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      z-index: 1000;
+
+      width: 60px;
+      height: 60px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      color: #071b0d;
+
+      font-size: 25px;
+
+      font-weight: bold;
+
+      border: 4px solid #111;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 60px;
+
+      padding: 35px 0;
+
+      border-top: 1px solid #222;
+
+      color: #aaa;
+    }
+
+    .footer {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+    }
+
+    /* CELULAR */
+
+    @media(max-width: 950px) {
+
+      nav {
+        display: none;
       }
 
-      .gallery-main img { height: 62vh; }
+      .hero-grid,
+      .quote {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width: 650px) {
+
+      header .btn-white {
+        display: none;
+      }
+
+      .hero {
+        padding: 45px 0;
+      }
+
+      .hero-buttons {
+        display: grid;
+      }
+
+      .hero-image img {
+        height: 430px;
+      }
+
+      .benefits,
+      .steps,
+      .projects,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+
+      .quote-info,
+      .quote-form {
+        padding: 25px;
+      }
+
+      .gallery-main img {
+        height: 60vh;
+      }
 
       .gallery-thumbs {
-        grid-template-columns: repeat(5, minmax(70px, 1fr));
         overflow-x: auto;
+
+        grid-template-columns: repeat(5, 85px);
       }
 
-      .gallery-thumb img { height: 70px; }
-
-      .gallery-arrow {
-        width: 44px;
-        height: 52px;
+      .gallery-thumb img {
+        height: 70px;
       }
     }
-"""
+  </style>
+</head>
 
-modal_html = """
-<!-- GALERIA / MODAL -->
-<div class="gallery-modal" id="galleryModal" aria-hidden="true">
-  <div class="gallery-box">
-    <div class="gallery-main">
-      <img id="galleryImage" src="" alt="Projeto de móveis planejados">
 
-      <button class="gallery-close" id="galleryClose" aria-label="Fechar galeria">×</button>
-      <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Foto anterior">‹</button>
-      <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Próxima foto">›</button>
+<body>
 
-      <div class="gallery-caption">
-        <small id="galleryCategory"></small>
-        <h3 id="galleryTitle"></h3>
+
+<header>
+
+  <div class="container nav">
+
+    <a class="brand" href="#inicio">
+
+      <div class="logo">
+        P
       </div>
+
+      <span>
+        Cantinho Planejado
+
+        <small>
+          MÓVEIS SOB MEDIDA
+        </small>
+      </span>
+
+    </a>
+
+
+    <nav>
+
+      <a href="#ambientes">
+        Ambientes
+      </a>
+
+      <a href="#projetos">
+        Projetos
+      </a>
+
+      <a href="#como-funciona">
+        Como funciona
+      </a>
+
+      <a href="#orcamento">
+        Orçamento
+      </a>
+
+    </nav>
+
+
+    <a
+      class="btn btn-white"
+      href="#orcamento"
+    >
+      Solicitar orçamento
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<section
+  class="hero"
+  id="inicio"
+>
+
+  <div class="container hero-grid">
+
+
+    <div>
+
+      <div class="eyebrow">
+        Projeto exclusivo para seu espaço
+      </div>
+
+
+      <h1>
+
+        Seu ambiente.
+
+        <span class="accent">
+          Do seu jeito.
+        </span>
+
+      </h1>
+
+
+      <p class="hero-text">
+
+        Criamos móveis planejados que unem
+        beleza, organização e aproveitamento
+        inteligente de cada centímetro.
+
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <a
+          href="#orcamento"
+          class="btn btn-wood"
+        >
+          Quero meu projeto
+        </a>
+
+
+        <a
+          href="#projetos"
+          class="btn btn-dark"
+        >
+          Ver projetos
+        </a>
+
+      </div>
+
+
+      <div class="chips">
+
+        <span class="chip">
+          ✓ Projeto personalizado
+        </span>
+
+        <span class="chip">
+          ✓ Acabamento premium
+        </span>
+
+        <span class="chip">
+          ✓ Sob medida
+        </span>
+
+      </div>
+
     </div>
 
-    <div class="gallery-thumbs" id="galleryThumbs"></div>
-  </div>
-</div>
-"""
 
-gallery_js = """
-  /* ============================
-     GALERIA DOS PROJETOS
-     ============================ */
+    <div class="hero-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=85"
+        alt="Cozinha planejada"
+      >
+
+      <div class="hero-info">
+
+        <span>
+          Projeto em destaque
+        </span>
+
+        <strong>
+          Cozinha Contemporânea
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section>
+
+  <div class="container benefits">
+
+
+    <div class="benefit">
+
+      <div class="benefit-icon">
+        ✦
+      </div>
+
+      <h3>
+        Design personalizado
+      </h3>
+
+      <p>
+        Cada projeto é criado para seu espaço.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <div class="benefit-icon">
+        ⌂
+      </div>
+
+      <h3>
+        Melhor aproveitamento
+      </h3>
+
+      <p>
+        Aproveitamento inteligente de cada canto.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <div class="benefit-icon">
+        ◆
+      </div>
+
+      <h3>
+        Materiais selecionados
+      </h3>
+
+      <p>
+        Acabamentos modernos e sofisticados.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <div class="benefit-icon">
+        ✓
+      </div>
+
+      <h3>
+        Projeto à montagem
+      </h3>
+
+      <p>
+        Acompanhamento em todas as etapas.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<section id="ambientes">
+
+  <div class="container">
+
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow">
+          Ambientes
+        </div>
+
+        <h2>
+          Planejamos cada espaço
+          para fazer sentido.
+        </h2>
+
+      </div>
+
+
+      <p>
+        Clique em um projeto para abrir
+        uma galeria com mais imagens.
+      </p>
+
+    </div>
+
+
+    <div class="filters">
+
+      <button
+        class="filter active"
+        data-filter="todos"
+      >
+        Todos
+      </button>
+
+      <button
+        class="filter"
+        data-filter="cozinha"
+      >
+        Cozinhas
+      </button>
+
+      <button
+        class="filter"
+        data-filter="quarto"
+      >
+        Quartos
+      </button>
+
+      <button
+        class="filter"
+        data-filter="sala"
+      >
+        Salas
+      </button>
+
+      <button
+        class="filter"
+        data-filter="banheiro"
+      >
+        Banheiros
+      </button>
+
+      <button
+        class="filter"
+        data-filter="escritorio"
+      >
+        Escritórios
+      </button>
+
+    </div>
+
+
+
+    <div
+      class="projects"
+      id="projetos"
+    >
+
+
+      <article
+        class="project"
+        data-category="cozinha"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=85"
+          alt="Cozinha planejada"
+        >
+
+        <div class="project-overlay">
+
+          <div>
+
+            <span class="tag">
+              Cozinha
+            </span>
+
+            <h3>
+              Madeira + tons claros
+            </h3>
+
+            <p>
+              Clique para ver mais fotos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="project"
+        data-category="quarto"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85"
+          alt="Quarto planejado"
+        >
+
+        <div class="project-overlay">
+
+          <div>
+
+            <span class="tag">
+              Quarto
+            </span>
+
+            <h3>
+              Conforto e organização
+            </h3>
+
+            <p>
+              Clique para ver mais fotos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="project"
+        data-category="sala"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
+          alt="Sala planejada"
+        >
+
+        <div class="project-overlay">
+
+          <div>
+
+            <span class="tag">
+              Sala
+            </span>
+
+            <h3>
+              Painel contemporâneo
+            </h3>
+
+            <p>
+              Clique para ver mais fotos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="project"
+        data-category="banheiro"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=85"
+          alt="Banheiro planejado"
+        >
+
+        <div class="project-overlay">
+
+          <div>
+
+            <span class="tag">
+              Banheiro
+            </span>
+
+            <h3>
+              Compacto e sofisticado
+            </h3>
+
+            <p>
+              Clique para ver mais fotos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+
+      <article
+        class="project"
+        data-category="escritorio"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+          alt="Escritório planejado"
+        >
+
+        <div class="project-overlay">
+
+          <div>
+
+            <span class="tag">
+              Escritório
+            </span>
+
+            <h3>
+              Home office funcional
+            </h3>
+
+            <p>
+              Clique para ver mais fotos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="como-funciona">
+
+  <div class="container">
+
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow">
+          Como funciona
+        </div>
+
+        <h2>
+          Da ideia à instalação.
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="steps">
+
+
+      <div class="step">
+
+        <h3>
+          Conte sua ideia
+        </h3>
+
+        <p>
+          Informe qual ambiente deseja transformar.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <h3>
+          Planejamento
+        </h3>
+
+        <p>
+          Definimos estilo, espaço e necessidades.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <h3>
+          Projeto e orçamento
+        </h3>
+
+        <p>
+          Você recebe uma proposta para analisar.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <h3>
+          Produção e montagem
+        </h3>
+
+        <p>
+          Depois da aprovação começa a fabricação.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="orcamento">
+
+  <div class="container">
+
+
+    <div class="quote">
+
+
+      <div class="quote-info">
+
+        <div class="eyebrow">
+          Orçamento
+        </div>
+
+        <h2>
+          Vamos planejar seu ambiente?
+        </h2>
+
+        <p>
+          Preencha as informações e envie
+          diretamente para nosso WhatsApp.
+        </p>
+
+      </div>
+
+
+      <form
+        class="quote-form"
+        id="quoteForm"
+      >
+
+
+        <div class="form-grid">
+
+
+          <div class="field">
+
+            <label>
+              Nome
+            </label>
+
+            <input
+              id="nome"
+              required
+              placeholder="Seu nome"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Telefone
+            </label>
+
+            <input
+              id="telefone"
+              required
+              placeholder="(12) 99999-9999"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Ambiente
+            </label>
+
+            <select
+              id="ambiente"
+              required
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option>
+                Cozinha
+              </option>
+
+              <option>
+                Quarto
+              </option>
+
+              <option>
+                Sala
+              </option>
+
+              <option>
+                Banheiro
+              </option>
+
+              <option>
+                Escritório
+              </option>
+
+              <option>
+                Outro
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Cidade
+            </label>
+
+            <input
+              id="cidade"
+              placeholder="Sua cidade"
+            >
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              Medidas aproximadas
+            </label>
+
+            <input
+              id="medidas"
+              placeholder="Ex.: 3,20m x 2,60m"
+            >
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              Conte o que deseja
+            </label>
+
+            <textarea
+              id="detalhes"
+              placeholder="Conte como você quer seu móvel..."
+            ></textarea>
+
+          </div>
+
+
+        </div>
+
+
+        <button
+          class="btn btn-wood"
+          type="submit"
+        >
+          Enviar pelo WhatsApp
+        </button>
+
+
+      </form>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section>
+
+  <div class="container faq">
+
+
+    <details>
+
+      <summary>
+        O orçamento é gratuito?
+      </summary>
+
+      <p>
+        Entre em contato para conversar
+        sobre seu projeto.
+      </p>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        Preciso saber as medidas exatas?
+      </summary>
+
+      <p>
+        Você pode começar informando
+        medidas aproximadas.
+      </p>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        Posso enviar fotos?
+      </summary>
+
+      <p>
+        Sim. Você pode enviar fotos e
+        referências diretamente pelo WhatsApp.
+      </p>
+
+    </details>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- GALERIA -->
+
+<div
+  class="gallery-modal"
+  id="galleryModal"
+>
+
+  <div class="gallery-box">
+
+
+    <div class="gallery-main">
+
+
+      <img
+        id="galleryImage"
+        src=""
+        alt="Projeto"
+      >
+
+
+      <button
+        class="gallery-close"
+        id="galleryClose"
+      >
+        ×
+      </button>
+
+
+      <button
+        class="gallery-arrow gallery-prev"
+        id="galleryPrev"
+      >
+        ‹
+      </button>
+
+
+      <button
+        class="gallery-arrow gallery-next"
+        id="galleryNext"
+      >
+        ›
+      </button>
+
+
+      <div class="gallery-caption">
+
+        <small id="galleryCategory"></small>
+
+        <h3 id="galleryTitle"></h3>
+
+      </div>
+
+
+    </div>
+
+
+    <div
+      class="gallery-thumbs"
+      id="galleryThumbs"
+    ></div>
+
+
+  </div>
+
+</div>
+
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div class="brand">
+
+      <div class="logo">
+        P
+      </div>
+
+      Cantinho Planejado
+
+    </div>
+
+
+    <small>
+
+      ©
+      <span id="year"></span>
+
+      Cantinho Planejado
+
+    </small>
+
+  </div>
+
+</footer>
+
+
+
+<a
+  href="#"
+  id="whatsappButton"
+  class="whatsapp"
+  title="WhatsApp"
+>
+  W
+</a>
+
+
+
+<script>
+
+  /* =====================================
+     WHATSAPP
+     ===================================== */
+
+  const WHATSAPP_NUMBER =
+    "5512991536902";
+
+
+  function abrirWhatsApp(mensagem) {
+
+    const link =
+      "https://wa.me/" +
+      WHATSAPP_NUMBER +
+      "?text=" +
+      encodeURIComponent(mensagem);
+
+    window.open(
+      link,
+      "_blank"
+    );
+
+  }
+
+
+  document.getElementById(
+    "whatsappButton"
+  ).addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      abrirWhatsApp(
+        "Olá! Vi o site do Cantinho Planejado e gostaria de solicitar um orçamento."
+      );
+
+    }
+  );
+
+
+  /* FORMULÁRIO */
+
+  document.getElementById(
+    "quoteForm"
+  ).addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const nome =
+        document.getElementById(
+          "nome"
+        ).value;
+
+
+      const telefone =
+        document.getElementById(
+          "telefone"
+        ).value;
+
+
+      const ambiente =
+        document.getElementById(
+          "ambiente"
+        ).value;
+
+
+      const cidade =
+        document.getElementById(
+          "cidade"
+        ).value;
+
+
+      const medidas =
+        document.getElementById(
+          "medidas"
+        ).value;
+
+
+      const detalhes =
+        document.getElementById(
+          "detalhes"
+        ).value;
+
+
+      const mensagem = `
+Olá! Gostaria de solicitar um orçamento.
+
+Nome: ${nome}
+
+Telefone: ${telefone}
+
+Ambiente: ${ambiente}
+
+Cidade: ${cidade || "Não informado"}
+
+Medidas:
+${medidas || "Não informado"}
+
+Detalhes:
+${detalhes || "Não informado"}
+      `;
+
+
+      abrirWhatsApp(
+        mensagem
+      );
+
+    }
+  );
+
+
+  /* =====================================
+     FILTROS
+     ===================================== */
+
+  const filtros =
+    document.querySelectorAll(
+      ".filter"
+    );
+
+
+  const projetos =
+    document.querySelectorAll(
+      ".project"
+    );
+
+
+  filtros.forEach(
+    filtro => {
+
+      filtro.addEventListener(
+        "click",
+        function() {
+
+          filtros.forEach(
+            item =>
+              item.classList.remove(
+                "active"
+              )
+          );
+
+
+          filtro.classList.add(
+            "active"
+          );
+
+
+          const categoria =
+            filtro.dataset.filter;
+
+
+          projetos.forEach(
+            projeto => {
+
+              if (
+                categoria === "todos" ||
+                projeto.dataset.category === categoria
+              ) {
+
+                projeto.style.display =
+                  "block";
+
+              }
+
+              else {
+
+                projeto.style.display =
+                  "none";
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =====================================
+     FOTOS DAS GALERIAS
+     ===================================== */
 
   const galerias = {
+
+
     cozinha: {
-      titulo: "Cozinhas planejadas",
-      categoria: "Cozinha",
+
+      titulo:
+        "Cozinhas planejadas",
+
+      categoria:
+        "Cozinha",
+
       fotos: [
+
         "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88"
+
       ]
+
     },
+
 
     quarto: {
-      titulo: "Quartos planejados",
-      categoria: "Quarto",
+
+      titulo:
+        "Quartos planejados",
+
+      categoria:
+        "Quarto",
+
       fotos: [
+
         "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=1400&q=88"
+
       ]
+
     },
+
 
     sala: {
-      titulo: "Salas planejadas",
-      categoria: "Sala",
+
+      titulo:
+        "Salas planejadas",
+
+      categoria:
+        "Sala",
+
       fotos: [
+
         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=88"
+
       ]
+
     },
+
 
     banheiro: {
-      titulo: "Banheiros planejados",
-      categoria: "Banheiro",
+
+      titulo:
+        "Banheiros planejados",
+
+      categoria:
+        "Banheiro",
+
       fotos: [
+
         "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1400&q=88"
+
       ]
+
     },
 
+
     escritorio: {
-      titulo: "Escritórios planejados",
-      categoria: "Escritório",
+
+      titulo:
+        "Escritórios planejados",
+
+      categoria:
+        "Escritório",
+
       fotos: [
+
         "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=88",
+
         "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1400&q=88"
+
       ]
+
     }
+
   };
 
-  const galleryModal = document.getElementById("galleryModal");
-  const galleryImage = document.getElementById("galleryImage");
-  const galleryTitle = document.getElementById("galleryTitle");
-  const galleryCategory = document.getElementById("galleryCategory");
-  const galleryThumbs = document.getElementById("galleryThumbs");
+
+  /* =====================================
+     GALERIA
+     ===================================== */
+
+  const modal =
+    document.getElementById(
+      "galleryModal"
+    );
+
+
+  const imagem =
+    document.getElementById(
+      "galleryImage"
+    );
+
+
+  const titulo =
+    document.getElementById(
+      "galleryTitle"
+    );
+
+
+  const categoriaTexto =
+    document.getElementById(
+      "galleryCategory"
+    );
+
+
+  const miniaturas =
+    document.getElementById(
+      "galleryThumbs"
+    );
+
 
   let galeriaAtual = null;
-  let fotoAtual = 0;
 
-  function mostrarFoto(indice) {
-    if (!galeriaAtual) return;
+  let imagemAtual = 0;
 
-    const total = galeriaAtual.fotos.length;
-    fotoAtual = (indice + total) % total;
 
-    galleryImage.src = galeriaAtual.fotos[fotoAtual];
-    galleryTitle.textContent = galeriaAtual.titulo;
-    galleryCategory.textContent = galeriaAtual.categoria;
+  function mostrarImagem(numero) {
 
-    galleryThumbs.querySelectorAll(".gallery-thumb").forEach((thumb, index) => {
-      thumb.classList.toggle("active", index === fotoAtual);
-    });
+    if (!galeriaAtual) {
+      return;
+    }
+
+
+    const total =
+      galeriaAtual.fotos.length;
+
+
+    imagemAtual =
+      (numero + total) % total;
+
+
+    imagem.src =
+      galeriaAtual.fotos[
+        imagemAtual
+      ];
+
+
+    titulo.textContent =
+      galeriaAtual.titulo;
+
+
+    categoriaTexto.textContent =
+      galeriaAtual.categoria;
+
+
+    document
+      .querySelectorAll(
+        ".gallery-thumb"
+      )
+      .forEach(
+        (thumb, index) => {
+
+          thumb.classList.toggle(
+            "active",
+            index === imagemAtual
+          );
+
+        }
+      );
+
   }
 
-  function abrirGaleria(categoria) {
-    galeriaAtual = galerias[categoria];
-    if (!galeriaAtual) return;
 
-    galleryThumbs.innerHTML = "";
+  function abrirGaleria(
+    categoria
+  ) {
 
-    galeriaAtual.fotos.forEach((foto, index) => {
-      const botao = document.createElement("button");
-      botao.className = "gallery-thumb";
+    galeriaAtual =
+      galerias[categoria];
 
-      const imagem = document.createElement("img");
-      imagem.src = foto;
-      imagem.alt = `${galeriaAtual.categoria} - foto ${index + 1}`;
 
-      botao.appendChild(imagem);
-      botao.addEventListener("click", () => mostrarFoto(index));
-      galleryThumbs.appendChild(botao);
-    });
+    if (!galeriaAtual) {
+      return;
+    }
 
-    mostrarFoto(0);
-    galleryModal.classList.add("open");
-    galleryModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+
+    miniaturas.innerHTML = "";
+
+
+    galeriaAtual.fotos.forEach(
+      function(foto, index) {
+
+        const botao =
+          document.createElement(
+            "button"
+          );
+
+
+        botao.className =
+          "gallery-thumb";
+
+
+        const img =
+          document.createElement(
+            "img"
+          );
+
+
+        img.src = foto;
+
+
+        botao.appendChild(
+          img
+        );
+
+
+        botao.addEventListener(
+          "click",
+          function() {
+
+            mostrarImagem(
+              index
+            );
+
+          }
+        );
+
+
+        miniaturas.appendChild(
+          botao
+        );
+
+      }
+    );
+
+
+    mostrarImagem(0);
+
+
+    modal.classList.add(
+      "open"
+    );
+
+
+    document.body.classList.add(
+      "modal-open"
+    );
+
   }
+
 
   function fecharGaleria() {
-    galleryModal.classList.remove("open");
-    galleryModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+
+    modal.classList.remove(
+      "open"
+    );
+
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
   }
 
-  document.querySelectorAll(".project").forEach(projeto => {
-    projeto.addEventListener("click", () => {
-      abrirGaleria(projeto.dataset.category);
-    });
-  });
 
-  document.getElementById("galleryClose").addEventListener("click", fecharGaleria);
-  document.getElementById("galleryPrev").addEventListener("click", () => mostrarFoto(fotoAtual - 1));
-  document.getElementById("galleryNext").addEventListener("click", () => mostrarFoto(fotoAtual + 1));
+  projetos.forEach(
+    projeto => {
 
-  galleryModal.addEventListener("click", event => {
-    if (event.target === galleryModal) fecharGaleria();
-  });
+      projeto.addEventListener(
+        "click",
+        function() {
 
-  document.addEventListener("keydown", event => {
-    if (!galleryModal.classList.contains("open")) return;
+          abrirGaleria(
+            projeto.dataset.category
+          );
 
-    if (event.key === "Escape") fecharGaleria();
-    if (event.key === "ArrowLeft") mostrarFoto(fotoAtual - 1);
-    if (event.key === "ArrowRight") mostrarFoto(fotoAtual + 1);
-  });
-"""
+        }
+      );
 
-if "/* GALERIA DOS PROJETOS */" not in text:
-    text = text.replace("</style>", gallery_css + "\n  </style>", 1)
+    }
+  );
 
-if 'id="galleryModal"' not in text:
-    text = text.replace("</main>", modal_html + "\n\n</main>", 1)
 
-if "const galerias =" not in text:
-    idx = text.rfind("</script>")
-    text = text[:idx] + "\n" + gallery_js + "\n" + text[idx:]
+  document.getElementById(
+    "galleryClose"
+  ).addEventListener(
+    "click",
+    fecharGaleria
+  );
 
-out = Path("/mnt/data/index_cantinho_planejado_com_galeria.html")
-out.write_text(text, encoding="utf-8")
 
-print(f"Arquivo criado: {out}")
-print("Cada card agora abre uma galeria com 5 imagens, setas, miniaturas e botão de fechar.")
+  document.getElementById(
+    "galleryPrev"
+  ).addEventListener(
+    "click",
+    function() {
+
+      mostrarImagem(
+        imagemAtual - 1
+      );
+
+    }
+  );
+
+
+  document.getElementById(
+    "galleryNext"
+  ).addEventListener(
+    "click",
+    function() {
+
+      mostrarImagem(
+        imagemAtual + 1
+      );
+
+    }
+  );
+
+
+  modal.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target === modal
+      ) {
+
+        fecharGaleria();
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        !modal.classList.contains(
+          "open"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        fecharGaleria();
+
+      }
+
+
+      if (
+        event.key === "ArrowLeft"
+      ) {
+
+        mostrarImagem(
+          imagemAtual - 1
+        );
+
+      }
+
+
+      if (
+        event.key === "ArrowRight"
+      ) {
+
+        mostrarImagem(
+          imagemAtual + 1
+        );
+
+      }
+
+    }
+  );
+
+
+  /* ANO */
+
+  document.getElementById(
+    "year"
+  ).textContent =
+    new Date().getFullYear();
+
+</script>
+
+
+</body>
+</html>
