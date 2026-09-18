@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +10,18 @@
     :root {
       --bg: #070707;
       --card: #111;
-      --border: #292929;
-      --text: #fff;
-      --muted: #aaa;
+      --border: #2b2b2b;
+      --text: #ffffff;
+      --muted: #aaaaaa;
       --wood: #c89d69;
       --wood2: #8b6039;
       --green: #25d366;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -45,6 +44,11 @@
       text-decoration: none;
     }
 
+    img {
+      display: block;
+      width: 100%;
+    }
+
     button,
     input,
     select,
@@ -56,13 +60,8 @@
       cursor: pointer;
     }
 
-    img {
-      width: 100%;
-      display: block;
-    }
-
     .container {
-      width: min(1160px, calc(100% - 30px));
+      width: min(1160px, calc(100% - 32px));
       margin: auto;
     }
 
@@ -72,21 +71,16 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-
       background: rgba(7, 7, 7, 0.92);
-
-      backdrop-filter: blur(15px);
-
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid #222;
     }
 
     .nav {
-      min-height: 75px;
-
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -94,47 +88,32 @@
       display: flex;
       align-items: center;
       gap: 12px;
-
       font-weight: bold;
     }
 
     .logo {
-      width: 43px;
-      height: 43px;
-
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
-
       border-radius: 13px;
-
-      background: linear-gradient(
-        135deg,
-        var(--wood),
-        var(--wood2)
-      );
-
+      background: linear-gradient(135deg, var(--wood), var(--wood2));
       color: #111;
-
-      font-size: 21px;
-      font-weight: bold;
+      font-size: 22px;
+      font-weight: 900;
     }
 
     .brand small {
       display: block;
-
+      color: var(--muted);
       font-size: 10px;
-
-      color: #aaa;
-
       letter-spacing: 2px;
     }
 
     nav {
       display: flex;
-      gap: 24px;
-
+      gap: 22px;
       color: #ccc;
-
       font-size: 14px;
     }
 
@@ -146,16 +125,12 @@
 
     .btn {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
-
       padding: 13px 18px;
-
       border-radius: 13px;
-
+      border: 0;
       font-weight: bold;
-
       transition: 0.2s;
     }
 
@@ -168,298 +143,217 @@
       color: #111;
     }
 
-    .btn-wood {
-      background: linear-gradient(
-        135deg,
-        var(--wood),
-        var(--wood2)
-      );
-
-      color: #111;
-    }
-
     .btn-dark {
       background: #111;
-
       color: white;
-
       border: 1px solid #333;
+    }
+
+    .btn-wood {
+      background: linear-gradient(135deg, var(--wood), var(--wood2));
+      color: #111;
     }
 
     /* HERO */
 
     .hero {
+      min-height: 650px;
       padding: 80px 0;
-
-      min-height: 660px;
-
       display: flex;
       align-items: center;
     }
 
     .hero-grid {
       display: grid;
-
       grid-template-columns: 1.05fr 0.95fr;
-
       gap: 50px;
-
       align-items: center;
     }
 
     .eyebrow {
       color: #e8d2b5;
-
       text-transform: uppercase;
-
       letter-spacing: 2px;
-
       font-size: 13px;
-
       margin-bottom: 16px;
     }
 
     h1 {
-      font-size: clamp(45px, 7vw, 80px);
-
-      line-height: 1;
-
+      font-size: clamp(46px, 7vw, 80px);
+      line-height: 0.98;
       letter-spacing: -3px;
     }
 
     .accent {
       display: block;
-
       color: var(--wood);
     }
 
-    .hero-text {
+    .hero p {
       color: var(--muted);
-
       font-size: 18px;
-
       max-width: 620px;
-
-      margin: 25px 0 30px;
+      margin: 24px 0 30px;
     }
 
     .hero-buttons {
       display: flex;
-
-      flex-wrap: wrap;
-
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .chips {
       display: flex;
-
       flex-wrap: wrap;
-
       gap: 9px;
-
       margin-top: 28px;
     }
 
     .chip {
       background: #101010;
-
       border: 1px solid #2b2b2b;
-
       border-radius: 999px;
-
       padding: 9px 12px;
-
       color: #ccc;
-
       font-size: 13px;
     }
 
     .hero-image {
       position: relative;
-
       overflow: hidden;
-
       border-radius: 28px;
-
       border: 1px solid #333;
     }
 
     .hero-image img {
-      height: 530px;
-
+      height: 525px;
       object-fit: cover;
     }
 
     .hero-image::after {
       content: "";
-
       position: absolute;
-
       inset: 0;
-
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.85),
-        transparent 50%
-      );
+      background: linear-gradient(to top, rgba(0,0,0,.85), transparent 50%);
     }
 
     .hero-info {
       position: absolute;
-
-      left: 25px;
-      bottom: 25px;
-
+      left: 24px;
+      bottom: 24px;
       z-index: 2;
     }
 
     .hero-info span {
       color: #ccc;
-
       font-size: 13px;
     }
 
     .hero-info strong {
       display: block;
-
       font-size: 23px;
     }
 
-    /* SEÇÕES */
-
     section {
       padding: 80px 0;
-    }
-
-    .section-head {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: end;
-
-      gap: 25px;
-
-      margin-bottom: 30px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(32px, 5vw, 52px);
-
-      line-height: 1.05;
-    }
-
-    .section-head p {
-      color: var(--muted);
-
-      max-width: 500px;
     }
 
     /* BENEFÍCIOS */
 
     .benefits {
       display: grid;
-
       grid-template-columns: repeat(4, 1fr);
-
       gap: 14px;
     }
 
     .benefit {
-      padding: 24px;
-
-      border-radius: 20px;
-
       background: #111;
-
       border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
     }
 
     .benefit-icon {
       width: 44px;
       height: 44px;
-
-      border-radius: 13px;
-
       display: grid;
       place-items: center;
-
+      border-radius: 13px;
       background: #1d1d1d;
-
       color: var(--wood);
-
       margin-bottom: 17px;
-
-      font-size: 20px;
     }
 
     .benefit p {
       color: var(--muted);
-
       font-size: 14px;
-
       margin-top: 7px;
+    }
+
+    /* CABEÇALHO SEÇÕES */
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 520px;
     }
 
     /* FILTROS */
 
     .filters {
       display: flex;
-
       flex-wrap: wrap;
-
       gap: 9px;
-
       margin-bottom: 25px;
     }
 
     .filter {
       background: #101010;
-
       color: #ccc;
-
       border: 1px solid #2c2c2c;
-
       border-radius: 999px;
-
       padding: 10px 14px;
     }
 
     .filter.active {
       background: white;
-
-      color: black;
+      color: #111;
+      border-color: white;
+      font-weight: bold;
     }
 
     /* PROJETOS */
 
     .projects {
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
-
       gap: 18px;
     }
 
     .project {
       position: relative;
-
       overflow: hidden;
-
       border-radius: 22px;
-
       border: 1px solid var(--border);
-
-      cursor: pointer;
-
       min-height: 390px;
+      cursor: pointer;
     }
 
     .project img {
       height: 390px;
-
       object-fit: cover;
-
       transition: 0.4s;
     }
 
@@ -467,59 +361,35 @@
       transform: scale(1.05);
     }
 
-    .project::before {
-      content: "Ver fotos";
-
+    .project-badge {
       position: absolute;
-
-      top: 15px;
-      right: 15px;
-
-      z-index: 5;
-
-      background: rgba(0, 0, 0, 0.7);
-
-      padding: 7px 11px;
-
+      top: 14px;
+      right: 14px;
+      z-index: 4;
+      background: rgba(0,0,0,.7);
+      padding: 7px 10px;
       border-radius: 999px;
-
+      border: 1px solid rgba(255,255,255,.2);
       font-size: 11px;
-
-      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .project-overlay {
       position: absolute;
-
       inset: 0;
-
       display: flex;
-
       align-items: end;
-
       padding: 22px;
-
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.9),
-        transparent 60%
-      );
+      background: linear-gradient(to top, rgba(0,0,0,.9), transparent 60%);
     }
 
     .tag {
       display: inline-block;
-
-      padding: 6px 10px;
-
-      margin-bottom: 8px;
-
-      border-radius: 999px;
-
-      background: rgba(0, 0, 0, 0.6);
-
+      background: rgba(0,0,0,.6);
       border: 1px solid #555;
-
+      border-radius: 999px;
+      padding: 6px 10px;
       font-size: 12px;
+      margin-bottom: 8px;
     }
 
     .project h3 {
@@ -528,51 +398,130 @@
 
     .project p {
       color: #ddd;
-
       font-size: 13px;
+    }
+
+    /* PREÇOS */
+
+    .price-box {
+      background: linear-gradient(180deg, #121212, #0d0d0d);
+      border: 1px solid #2b2b2b;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    .price-header {
+      padding: 32px;
+      border-bottom: 1px solid #2b2b2b;
+    }
+
+    .price-header h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .price-header p {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 30px;
+      border-bottom: 1px solid #242424;
+      transition: 0.2s;
+    }
+
+    .price-row:hover {
+      background: #151515;
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-name {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .price-name small {
+      display: block;
+      color: #888;
+      font-size: 12px;
+      font-weight: normal;
+      margin-top: 3px;
+    }
+
+    .price-value {
+      text-align: right;
+      min-width: 160px;
+    }
+
+    .price-value small {
+      display: block;
+      color: #aaa;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .price-value strong {
+      color: var(--wood);
+      font-size: 24px;
+    }
+
+    .price-warning {
+      margin-top: 20px;
+      padding: 20px 22px;
+      background: #151515;
+      border: 1px solid #333;
+      border-radius: 16px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    .price-warning strong {
+      color: white;
+    }
+
+    .price-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 22px;
     }
 
     /* ETAPAS */
 
     .steps {
       display: grid;
-
       grid-template-columns: repeat(4, 1fr);
-
       gap: 14px;
-
-      counter-reset: etapa;
+      counter-reset: step;
     }
 
     .step {
-      counter-increment: etapa;
-
+      counter-increment: step;
       background: #101010;
-
       border: 1px solid #282828;
-
       border-radius: 20px;
-
       padding: 25px;
     }
 
     .step::before {
-      content: "0" counter(etapa);
-
+      content: "0" counter(step);
       display: block;
-
       color: var(--wood);
-
       font-size: 32px;
-
       font-weight: bold;
-
       margin-bottom: 20px;
     }
 
     .step p {
       color: var(--muted);
-
       font-size: 14px;
     }
 
@@ -580,29 +529,21 @@
 
     .quote {
       display: grid;
-
       grid-template-columns: 0.9fr 1.1fr;
-
       overflow: hidden;
-
       border: 1px solid #2a2a2a;
-
       border-radius: 28px;
-
       background: #0e0e0e;
     }
 
     .quote-info {
       padding: 45px;
-
       background: #111;
     }
 
     .quote-info h2 {
       font-size: clamp(34px, 5vw, 52px);
-
       line-height: 1.05;
-
       margin-bottom: 18px;
     }
 
@@ -616,15 +557,12 @@
 
     .form-grid {
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
       gap: 14px;
     }
 
     .field {
       display: grid;
-
       gap: 7px;
     }
 
@@ -634,7 +572,6 @@
 
     .field label {
       color: #ccc;
-
       font-size: 13px;
     }
 
@@ -642,33 +579,21 @@
     .field select,
     .field textarea {
       width: 100%;
-
       padding: 14px;
-
-      border: 1px solid #303030;
-
-      border-radius: 13px;
-
       background: #151515;
-
       color: white;
-
+      border: 1px solid #303030;
+      border-radius: 13px;
       outline: none;
     }
 
     .field textarea {
       min-height: 120px;
-
       resize: vertical;
     }
 
-    .quote-form button {
+    .quote-form .btn {
       width: 100%;
-
-      border: none;
-
-      cursor: pointer;
-
       margin-top: 16px;
     }
 
@@ -676,55 +601,39 @@
 
     .faq {
       max-width: 850px;
-
       margin: auto;
-
       display: grid;
-
       gap: 10px;
     }
 
     details {
       padding: 18px 20px;
-
       border-radius: 16px;
-
       border: 1px solid #282828;
-
       background: #101010;
     }
 
     summary {
       cursor: pointer;
-
       font-weight: bold;
     }
 
     details p {
-      color: var(--muted);
-
       margin-top: 12px;
+      color: var(--muted);
     }
 
     /* GALERIA */
 
     .gallery-modal {
       position: fixed;
-
       inset: 0;
-
       z-index: 5000;
-
       display: none;
-
-      justify-content: center;
       align-items: center;
-
+      justify-content: center;
       padding: 20px;
-
-      background: rgba(0, 0, 0, 0.95);
-
-      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,.95);
     }
 
     .gallery-modal.open {
@@ -737,43 +646,28 @@
 
     .gallery-main {
       position: relative;
-
       overflow: hidden;
-
-      border-radius: 25px;
-
+      border-radius: 24px;
       border: 1px solid #333;
-
       background: #111;
     }
 
     .gallery-main img {
-      width: 100%;
-
       height: min(72vh, 700px);
-
       object-fit: cover;
     }
 
     .gallery-caption {
       position: absolute;
-
       left: 0;
       right: 0;
       bottom: 0;
-
-      padding: 60px 25px 25px;
-
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.92),
-        transparent
-      );
+      padding: 60px 24px 22px;
+      background: linear-gradient(to top, rgba(0,0,0,.92), transparent);
     }
 
     .gallery-caption small {
       color: var(--wood);
-
       font-weight: bold;
     }
 
@@ -781,48 +675,30 @@
       font-size: 30px;
     }
 
-    .gallery-close {
+    .gallery-close,
+    .gallery-arrow {
       position: absolute;
+      z-index: 10;
+      color: white;
+      border: 1px solid #555;
+      background: rgba(0,0,0,.75);
+    }
 
+    .gallery-close {
       top: 15px;
       right: 15px;
-
-      z-index: 10;
-
       width: 48px;
       height: 48px;
-
       border-radius: 50%;
-
-      border: 1px solid #555;
-
-      background: rgba(0, 0, 0, 0.75);
-
-      color: white;
-
       font-size: 26px;
     }
 
     .gallery-arrow {
-      position: absolute;
-
       top: 50%;
-
-      z-index: 10;
-
       transform: translateY(-50%);
-
       width: 50px;
       height: 60px;
-
       border-radius: 14px;
-
-      border: 1px solid #555;
-
-      background: rgba(0, 0, 0, 0.72);
-
-      color: white;
-
       font-size: 30px;
     }
 
@@ -836,39 +712,27 @@
 
     .gallery-thumbs {
       display: grid;
-
       grid-template-columns: repeat(5, 1fr);
-
       gap: 10px;
-
       margin-top: 12px;
     }
 
     .gallery-thumb {
       padding: 0;
-
       border: 2px solid transparent;
-
       border-radius: 12px;
-
       overflow: hidden;
-
       background: #111;
-
       opacity: 0.6;
     }
 
     .gallery-thumb.active {
       opacity: 1;
-
       border-color: var(--wood);
     }
 
     .gallery-thumb img {
-      width: 100%;
-
       height: 90px;
-
       object-fit: cover;
     }
 
@@ -876,51 +740,32 @@
 
     .whatsapp {
       position: fixed;
-
       right: 20px;
       bottom: 20px;
-
-      z-index: 1000;
-
+      z-index: 1200;
       width: 60px;
       height: 60px;
-
       display: grid;
       place-items: center;
-
       border-radius: 50%;
-
       background: var(--green);
-
       color: #071b0d;
-
-      font-size: 25px;
-
-      font-weight: bold;
-
       border: 4px solid #111;
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    /* FOOTER */
-
     footer {
-      margin-top: 60px;
-
-      padding: 35px 0;
-
       border-top: 1px solid #222;
-
+      padding: 35px 0;
       color: #aaa;
     }
 
     .footer {
       display: flex;
-
-      align-items: center;
       justify-content: space-between;
-
+      align-items: center;
       gap: 20px;
-
       flex-wrap: wrap;
     }
 
@@ -961,10 +806,6 @@
         display: grid;
       }
 
-      .hero-image img {
-        height: 430px;
-      }
-
       .benefits,
       .steps,
       .projects,
@@ -984,9 +825,16 @@
         margin-top: 12px;
       }
 
-      .quote-info,
-      .quote-form {
-        padding: 25px;
+      .price-row {
+        grid-template-columns: 1fr;
+      }
+
+      .price-value {
+        text-align: left;
+      }
+
+      .price-cta .btn {
+        width: 100%;
       }
 
       .gallery-main img {
@@ -994,9 +842,8 @@
       }
 
       .gallery-thumbs {
-        overflow-x: auto;
-
         grid-template-columns: repeat(5, 85px);
+        overflow-x: auto;
       }
 
       .gallery-thumb img {
@@ -1006,9 +853,7 @@
   </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -1022,14 +867,10 @@
 
       <span>
         Cantinho Planejado
-
-        <small>
-          MÓVEIS SOB MEDIDA
-        </small>
+        <small>MÓVEIS SOB MEDIDA</small>
       </span>
 
     </a>
-
 
     <nav>
 
@@ -1039,6 +880,10 @@
 
       <a href="#projetos">
         Projetos
+      </a>
+
+      <a href="#precos">
+        Preços
       </a>
 
       <a href="#como-funciona">
@@ -1051,10 +896,9 @@
 
     </nav>
 
-
     <a
-      class="btn btn-white"
       href="#orcamento"
+      class="btn btn-white"
     >
       Solicitar orçamento
     </a>
@@ -1063,764 +907,934 @@
 
 </header>
 
-
-
 <main>
 
+  <!-- HERO -->
 
-<section
-  class="hero"
-  id="inicio"
->
+  <section class="hero" id="inicio">
 
-  <div class="container hero-grid">
+    <div class="container hero-grid">
 
+      <div>
 
-    <div>
+        <div class="eyebrow">
+          Projeto exclusivo para seu espaço
+        </div>
 
-      <div class="eyebrow">
-        Projeto exclusivo para seu espaço
+        <h1>
+
+          Seu ambiente.
+
+          <span class="accent">
+            Do seu jeito.
+          </span>
+
+        </h1>
+
+        <p>
+          Criamos móveis planejados que unem beleza,
+          organização e aproveitamento inteligente
+          de cada centímetro.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#orcamento"
+            class="btn btn-wood"
+          >
+            Quero meu projeto
+          </a>
+
+          <a
+            href="#projetos"
+            class="btn btn-dark"
+          >
+            Ver projetos
+          </a>
+
+        </div>
+
+        <div class="chips">
+
+          <span class="chip">
+            ✓ Projeto personalizado
+          </span>
+
+          <span class="chip">
+            ✓ Acabamento premium
+          </span>
+
+          <span class="chip">
+            ✓ Sob medida
+          </span>
+
+        </div>
+
       </div>
 
+      <div class="hero-image">
 
-      <h1>
+        <img
+          src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=85"
+          alt="Cozinha planejada"
+        >
 
-        Seu ambiente.
+        <div class="hero-info">
 
-        <span class="accent">
-          Do seu jeito.
-        </span>
+          <span>
+            Projeto em destaque
+          </span>
 
-      </h1>
+          <strong>
+            Cozinha Contemporânea
+          </strong>
 
+        </div>
 
-      <p class="hero-text">
+      </div>
 
-        Criamos móveis planejados que unem
-        beleza, organização e aproveitamento
-        inteligente de cada centímetro.
+    </div>
 
-      </p>
+  </section>
 
+  <!-- BENEFÍCIOS -->
 
-      <div class="hero-buttons">
+  <section>
+
+    <div class="container benefits">
+
+      <div class="benefit">
+
+        <div class="benefit-icon">
+          ✦
+        </div>
+
+        <h3>
+          Design personalizado
+        </h3>
+
+        <p>
+          Cada projeto é feito de acordo
+          com seu espaço.
+        </p>
+
+      </div>
+
+      <div class="benefit">
+
+        <div class="benefit-icon">
+          ⌂
+        </div>
+
+        <h3>
+          Melhor aproveitamento
+        </h3>
+
+        <p>
+          Aproveitamos cada canto
+          de forma inteligente.
+        </p>
+
+      </div>
+
+      <div class="benefit">
+
+        <div class="benefit-icon">
+          ◆
+        </div>
+
+        <h3>
+          Materiais selecionados
+        </h3>
+
+        <p>
+          Acabamentos modernos
+          e sofisticados.
+        </p>
+
+      </div>
+
+      <div class="benefit">
+
+        <div class="benefit-icon">
+          ✓
+        </div>
+
+        <h3>
+          Projeto à montagem
+        </h3>
+
+        <p>
+          Acompanhamento desde a ideia
+          até a instalação.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJETOS -->
+
+  <section id="ambientes">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Ambientes
+          </div>
+
+          <h2>
+            Planejamos cada espaço
+            para fazer sentido.
+          </h2>
+
+        </div>
+
+        <p>
+          Clique em um projeto para
+          ver mais fotos.
+        </p>
+
+      </div>
+
+      <div class="filters">
+
+        <button class="filter active" data-filter="todos">
+          Todos
+        </button>
+
+        <button class="filter" data-filter="cozinha">
+          Cozinhas
+        </button>
+
+        <button class="filter" data-filter="quarto">
+          Quartos
+        </button>
+
+        <button class="filter" data-filter="sala">
+          Salas
+        </button>
+
+        <button class="filter" data-filter="banheiro">
+          Banheiros
+        </button>
+
+        <button class="filter" data-filter="escritorio">
+          Escritórios
+        </button>
+
+      </div>
+
+      <div class="projects" id="projetos">
+
+        <article class="project" data-category="cozinha">
+
+          <span class="project-badge">
+            Ver fotos
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=85"
+            alt="Cozinha"
+          >
+
+          <div class="project-overlay">
+
+            <div>
+
+              <span class="tag">
+                Cozinha
+              </span>
+
+              <h3>
+                Madeira + tons claros
+              </h3>
+
+              <p>
+                Clique para ver mais fotos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="project" data-category="quarto">
+
+          <span class="project-badge">
+            Ver fotos
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85"
+            alt="Quarto"
+          >
+
+          <div class="project-overlay">
+
+            <div>
+
+              <span class="tag">
+                Quarto
+              </span>
+
+              <h3>
+                Conforto e organização
+              </h3>
+
+              <p>
+                Clique para ver mais fotos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="project" data-category="sala">
+
+          <span class="project-badge">
+            Ver fotos
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
+            alt="Sala"
+          >
+
+          <div class="project-overlay">
+
+            <div>
+
+              <span class="tag">
+                Sala
+              </span>
+
+              <h3>
+                Painel contemporâneo
+              </h3>
+
+              <p>
+                Clique para ver mais fotos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="project" data-category="banheiro">
+
+          <span class="project-badge">
+            Ver fotos
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=85"
+            alt="Banheiro"
+          >
+
+          <div class="project-overlay">
+
+            <div>
+
+              <span class="tag">
+                Banheiro
+              </span>
+
+              <h3>
+                Compacto e sofisticado
+              </h3>
+
+              <p>
+                Clique para ver mais fotos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="project" data-category="escritorio">
+
+          <span class="project-badge">
+            Ver fotos
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+            alt="Escritório"
+          >
+
+          <div class="project-overlay">
+
+            <div>
+
+              <span class="tag">
+                Escritório
+              </span>
+
+              <h3>
+                Home office funcional
+              </h3>
+
+              <p>
+                Clique para ver mais fotos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PREÇOS -->
+
+  <section id="precos">
+
+    <div class="container">
+
+      <div class="price-box">
+
+        <div class="price-header">
+
+          <div class="eyebrow">
+            Valores estimados
+          </div>
+
+          <h2>
+            Tenha uma ideia de investimento
+          </h2>
+
+          <p>
+            Estes valores servem apenas como referência inicial.
+            O preço final varia conforme medidas, materiais,
+            ferragens, acabamento e complexidade do projeto.
+          </p>
+
+        </div>
+
+        <div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Banheiro planejado
+
+              <small>
+                Gabinete, nichos e armazenamento.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 2.500
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Home office pequeno
+
+              <small>
+                Bancada, nichos e organização.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 1.800
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Painel para sala
+
+              <small>
+                Painel, rack e detalhes planejados.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 2.000
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Guarda-roupa planejado
+
+              <small>
+                Projeto personalizado conforme medidas.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 3.500
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Quarto planejado
+
+              <small>
+                Armários, painéis e soluções personalizadas.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 5.000
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Cozinha planejada compacta
+
+              <small>
+                Ideal para ambientes menores.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 6.000
+              </strong>
+
+            </div>
+
+          </div>
+
+          <div class="price-row">
+
+            <div class="price-name">
+
+              Cozinha planejada completa
+
+              <small>
+                Projeto completo e personalizado.
+              </small>
+
+            </div>
+
+            <div class="price-value">
+
+              <small>
+                a partir de
+              </small>
+
+              <strong>
+                R$ 10.000
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="price-warning">
+
+        <strong>
+          Importante:
+        </strong>
+
+        estes valores são apenas estimativas e
+        não representam um orçamento definitivo.
+        O preço final depende das medidas,
+        materiais escolhidos, ferragens,
+        acabamento e complexidade do projeto.
+
+      </div>
+
+      <div class="price-cta">
 
         <a
           href="#orcamento"
           class="btn btn-wood"
         >
-          Quero meu projeto
-        </a>
-
-
-        <a
-          href="#projetos"
-          class="btn btn-dark"
-        >
-          Ver projetos
+          Solicitar orçamento personalizado
         </a>
 
       </div>
 
-
-      <div class="chips">
-
-        <span class="chip">
-          ✓ Projeto personalizado
-        </span>
-
-        <span class="chip">
-          ✓ Acabamento premium
-        </span>
-
-        <span class="chip">
-          ✓ Sob medida
-        </span>
-
-      </div>
-
     </div>
 
+  </section>
 
-    <div class="hero-image">
+  <!-- COMO FUNCIONA -->
 
-      <img
-        src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=85"
-        alt="Cozinha planejada"
-      >
+  <section id="como-funciona">
 
-      <div class="hero-info">
+    <div class="container">
 
-        <span>
-          Projeto em destaque
-        </span>
+      <div class="section-head">
 
-        <strong>
-          Cozinha Contemporânea
-        </strong>
+        <div>
 
-      </div>
+          <div class="eyebrow">
+            Como funciona
+          </div>
 
-    </div>
+          <h2>
+            Da ideia à instalação.
+          </h2>
 
-  </div>
-
-</section>
-
-
-
-<section>
-
-  <div class="container benefits">
-
-
-    <div class="benefit">
-
-      <div class="benefit-icon">
-        ✦
-      </div>
-
-      <h3>
-        Design personalizado
-      </h3>
-
-      <p>
-        Cada projeto é criado para seu espaço.
-      </p>
-
-    </div>
-
-
-    <div class="benefit">
-
-      <div class="benefit-icon">
-        ⌂
-      </div>
-
-      <h3>
-        Melhor aproveitamento
-      </h3>
-
-      <p>
-        Aproveitamento inteligente de cada canto.
-      </p>
-
-    </div>
-
-
-    <div class="benefit">
-
-      <div class="benefit-icon">
-        ◆
-      </div>
-
-      <h3>
-        Materiais selecionados
-      </h3>
-
-      <p>
-        Acabamentos modernos e sofisticados.
-      </p>
-
-    </div>
-
-
-    <div class="benefit">
-
-      <div class="benefit-icon">
-        ✓
-      </div>
-
-      <h3>
-        Projeto à montagem
-      </h3>
-
-      <p>
-        Acompanhamento em todas as etapas.
-      </p>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-
-<section id="ambientes">
-
-  <div class="container">
-
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow">
-          Ambientes
         </div>
 
-        <h2>
-          Planejamos cada espaço
-          para fazer sentido.
-        </h2>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+
+          <h3>
+            Conte sua ideia
+          </h3>
+
+          <p>
+            Informe o ambiente que deseja transformar.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <h3>
+            Planejamento
+          </h3>
+
+          <p>
+            Definimos estilo, medidas e necessidades.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <h3>
+            Projeto e orçamento
+          </h3>
+
+          <p>
+            Você recebe a proposta para analisar.
+          </p>
+
+        </div>
+
+        <div class="step">
+
+          <h3>
+            Produção e montagem
+          </h3>
+
+          <p>
+            Após aprovação começa a fabricação.
+          </p>
+
+        </div>
 
       </div>
 
-
-      <p>
-        Clique em um projeto para abrir
-        uma galeria com mais imagens.
-      </p>
-
     </div>
 
+  </section>
 
-    <div class="filters">
+  <!-- ORÇAMENTO -->
 
-      <button
-        class="filter active"
-        data-filter="todos"
-      >
-        Todos
-      </button>
+  <section id="orcamento">
 
-      <button
-        class="filter"
-        data-filter="cozinha"
-      >
-        Cozinhas
-      </button>
+    <div class="container">
 
-      <button
-        class="filter"
-        data-filter="quarto"
-      >
-        Quartos
-      </button>
+      <div class="quote">
 
-      <button
-        class="filter"
-        data-filter="sala"
-      >
-        Salas
-      </button>
+        <div class="quote-info">
 
-      <button
-        class="filter"
-        data-filter="banheiro"
-      >
-        Banheiros
-      </button>
+          <div class="eyebrow">
+            Orçamento
+          </div>
 
-      <button
-        class="filter"
-        data-filter="escritorio"
-      >
-        Escritórios
-      </button>
+          <h2>
+            Vamos planejar seu ambiente?
+          </h2>
 
-    </div>
+          <p>
+            Preencha seus dados e envie
+            diretamente pelo WhatsApp.
+          </p>
 
+        </div>
 
-
-    <div
-      class="projects"
-      id="projetos"
-    >
-
-
-      <article
-        class="project"
-        data-category="cozinha"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=85"
-          alt="Cozinha planejada"
+        <form
+          class="quote-form"
+          id="quoteForm"
         >
 
-        <div class="project-overlay">
+          <div class="form-grid">
 
-          <div>
+            <div class="field">
 
-            <span class="tag">
-              Cozinha
-            </span>
+              <label>
+                Nome
+              </label>
 
-            <h3>
-              Madeira + tons claros
-            </h3>
+              <input
+                id="nome"
+                required
+                placeholder="Seu nome"
+              >
 
-            <p>
-              Clique para ver mais fotos.
-            </p>
+            </div>
+
+            <div class="field">
+
+              <label>
+                Telefone
+              </label>
+
+              <input
+                id="telefone"
+                required
+                placeholder="(12) 99999-9999"
+              >
+
+            </div>
+
+            <div class="field">
+
+              <label>
+                Ambiente
+              </label>
+
+              <select
+                id="ambiente"
+                required
+              >
+
+                <option value="">
+                  Selecione
+                </option>
+
+                <option>
+                  Cozinha
+                </option>
+
+                <option>
+                  Quarto
+                </option>
+
+                <option>
+                  Sala
+                </option>
+
+                <option>
+                  Banheiro
+                </option>
+
+                <option>
+                  Escritório
+                </option>
+
+                <option>
+                  Outro
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="field">
+
+              <label>
+                Cidade
+              </label>
+
+              <input
+                id="cidade"
+                placeholder="Sua cidade"
+              >
+
+            </div>
+
+            <div class="field full">
+
+              <label>
+                Medidas aproximadas
+              </label>
+
+              <input
+                id="medidas"
+                placeholder="Ex.: 3,20m x 2,60m"
+              >
+
+            </div>
+
+            <div class="field full">
+
+              <label>
+                Conte o que deseja
+              </label>
+
+              <textarea
+                id="detalhes"
+                placeholder="Conte como você quer seu móvel..."
+              ></textarea>
+
+            </div>
 
           </div>
 
-        </div>
+          <button
+            class="btn btn-wood"
+            type="submit"
+          >
+            Enviar pelo WhatsApp
+          </button>
 
-      </article>
-
-
-
-      <article
-        class="project"
-        data-category="quarto"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85"
-          alt="Quarto planejado"
-        >
-
-        <div class="project-overlay">
-
-          <div>
-
-            <span class="tag">
-              Quarto
-            </span>
-
-            <h3>
-              Conforto e organização
-            </h3>
-
-            <p>
-              Clique para ver mais fotos.
-            </p>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-
-      <article
-        class="project"
-        data-category="sala"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
-          alt="Sala planejada"
-        >
-
-        <div class="project-overlay">
-
-          <div>
-
-            <span class="tag">
-              Sala
-            </span>
-
-            <h3>
-              Painel contemporâneo
-            </h3>
-
-            <p>
-              Clique para ver mais fotos.
-            </p>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-
-      <article
-        class="project"
-        data-category="banheiro"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=85"
-          alt="Banheiro planejado"
-        >
-
-        <div class="project-overlay">
-
-          <div>
-
-            <span class="tag">
-              Banheiro
-            </span>
-
-            <h3>
-              Compacto e sofisticado
-            </h3>
-
-            <p>
-              Clique para ver mais fotos.
-            </p>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-
-      <article
-        class="project"
-        data-category="escritorio"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
-          alt="Escritório planejado"
-        >
-
-        <div class="project-overlay">
-
-          <div>
-
-            <span class="tag">
-              Escritório
-            </span>
-
-            <h3>
-              Home office funcional
-            </h3>
-
-            <p>
-              Clique para ver mais fotos.
-            </p>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<section id="como-funciona">
-
-  <div class="container">
-
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow">
-          Como funciona
-        </div>
-
-        <h2>
-          Da ideia à instalação.
-        </h2>
+        </form>
 
       </div>
 
     </div>
 
+  </section>
 
-    <div class="steps">
+  <!-- FAQ -->
 
+  <section>
 
-      <div class="step">
+    <div class="container faq">
 
-        <h3>
-          Conte sua ideia
-        </h3>
+      <details>
+
+        <summary>
+          O orçamento é gratuito?
+        </summary>
 
         <p>
-          Informe qual ambiente deseja transformar.
+          Entre em contato para explicar
+          seu projeto.
         </p>
 
-      </div>
+      </details>
 
+      <details>
 
-      <div class="step">
-
-        <h3>
-          Planejamento
-        </h3>
+        <summary>
+          Preciso saber as medidas exatas?
+        </summary>
 
         <p>
-          Definimos estilo, espaço e necessidades.
+          Não. Você pode começar com
+          medidas aproximadas.
         </p>
 
-      </div>
+      </details>
 
+      <details>
 
-      <div class="step">
-
-        <h3>
-          Projeto e orçamento
-        </h3>
+        <summary>
+          Posso enviar fotos?
+        </summary>
 
         <p>
-          Você recebe uma proposta para analisar.
+          Sim. Você pode enviar fotos e
+          referências pelo WhatsApp.
         </p>
 
-      </div>
-
-
-      <div class="step">
-
-        <h3>
-          Produção e montagem
-        </h3>
-
-        <p>
-          Depois da aprovação começa a fabricação.
-        </p>
-
-      </div>
-
+      </details>
 
     </div>
 
-  </div>
-
-</section>
-
-
-
-<section id="orcamento">
-
-  <div class="container">
-
-
-    <div class="quote">
-
-
-      <div class="quote-info">
-
-        <div class="eyebrow">
-          Orçamento
-        </div>
-
-        <h2>
-          Vamos planejar seu ambiente?
-        </h2>
-
-        <p>
-          Preencha as informações e envie
-          diretamente para nosso WhatsApp.
-        </p>
-
-      </div>
-
-
-      <form
-        class="quote-form"
-        id="quoteForm"
-      >
-
-
-        <div class="form-grid">
-
-
-          <div class="field">
-
-            <label>
-              Nome
-            </label>
-
-            <input
-              id="nome"
-              required
-              placeholder="Seu nome"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Telefone
-            </label>
-
-            <input
-              id="telefone"
-              required
-              placeholder="(12) 99999-9999"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Ambiente
-            </label>
-
-            <select
-              id="ambiente"
-              required
-            >
-
-              <option value="">
-                Selecione
-              </option>
-
-              <option>
-                Cozinha
-              </option>
-
-              <option>
-                Quarto
-              </option>
-
-              <option>
-                Sala
-              </option>
-
-              <option>
-                Banheiro
-              </option>
-
-              <option>
-                Escritório
-              </option>
-
-              <option>
-                Outro
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Cidade
-            </label>
-
-            <input
-              id="cidade"
-              placeholder="Sua cidade"
-            >
-
-          </div>
-
-
-          <div class="field full">
-
-            <label>
-              Medidas aproximadas
-            </label>
-
-            <input
-              id="medidas"
-              placeholder="Ex.: 3,20m x 2,60m"
-            >
-
-          </div>
-
-
-          <div class="field full">
-
-            <label>
-              Conte o que deseja
-            </label>
-
-            <textarea
-              id="detalhes"
-              placeholder="Conte como você quer seu móvel..."
-            ></textarea>
-
-          </div>
-
-
-        </div>
-
-
-        <button
-          class="btn btn-wood"
-          type="submit"
-        >
-          Enviar pelo WhatsApp
-        </button>
-
-
-      </form>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<section>
-
-  <div class="container faq">
-
-
-    <details>
-
-      <summary>
-        O orçamento é gratuito?
-      </summary>
-
-      <p>
-        Entre em contato para conversar
-        sobre seu projeto.
-      </p>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        Preciso saber as medidas exatas?
-      </summary>
-
-      <p>
-        Você pode começar informando
-        medidas aproximadas.
-      </p>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        Posso enviar fotos?
-      </summary>
-
-      <p>
-        Sim. Você pode enviar fotos e
-        referências diretamente pelo WhatsApp.
-      </p>
-
-    </details>
-
-
-  </div>
-
-</section>
-
+  </section>
 
 </main>
-
-
 
 <!-- GALERIA -->
 
@@ -1831,16 +1845,13 @@
 
   <div class="gallery-box">
 
-
     <div class="gallery-main">
-
 
       <img
         id="galleryImage"
         src=""
         alt="Projeto"
       >
-
 
       <button
         class="gallery-close"
@@ -1849,7 +1860,6 @@
         ×
       </button>
 
-
       <button
         class="gallery-arrow gallery-prev"
         id="galleryPrev"
@@ -1857,14 +1867,12 @@
         ‹
       </button>
 
-
       <button
         class="gallery-arrow gallery-next"
         id="galleryNext"
       >
         ›
       </button>
-
 
       <div class="gallery-caption">
 
@@ -1874,21 +1882,16 @@
 
       </div>
 
-
     </div>
-
 
     <div
       class="gallery-thumbs"
       id="galleryThumbs"
     ></div>
 
-
   </div>
 
 </div>
-
-
 
 <footer>
 
@@ -1904,38 +1907,26 @@
 
     </div>
 
-
     <small>
-
-      ©
-      <span id="year"></span>
-
+      © <span id="year"></span>
       Cantinho Planejado
-
     </small>
 
   </div>
 
 </footer>
 
-
-
 <a
   href="#"
   id="whatsappButton"
   class="whatsapp"
-  title="WhatsApp"
 >
   W
 </a>
 
-
-
 <script>
 
-  /* =====================================
-     WHATSAPP
-     ===================================== */
+  /* WHATSAPP */
 
   const WHATSAPP_NUMBER =
     "5512991536902";
@@ -1949,6 +1940,7 @@
       "?text=" +
       encodeURIComponent(mensagem);
 
+
     window.open(
       link,
       "_blank"
@@ -1957,124 +1949,104 @@
   }
 
 
-  document.getElementById(
-    "whatsappButton"
-  ).addEventListener(
-    "click",
-    function(event) {
+  document
+    .getElementById("whatsappButton")
+    .addEventListener(
+      "click",
+      function(event) {
 
-      event.preventDefault();
+        event.preventDefault();
 
-      abrirWhatsApp(
-        "Olá! Vi o site do Cantinho Planejado e gostaria de solicitar um orçamento."
-      );
+        abrirWhatsApp(
+          "Olá! Vi o site do Cantinho Planejado e gostaria de solicitar um orçamento."
+        );
 
-    }
-  );
+      }
+    );
 
 
   /* FORMULÁRIO */
 
-  document.getElementById(
-    "quoteForm"
-  ).addEventListener(
-    "submit",
-    function(event) {
+  document
+    .getElementById("quoteForm")
+    .addEventListener(
+      "submit",
+      function(event) {
 
-      event.preventDefault();
-
-
-      const nome =
-        document.getElementById(
-          "nome"
-        ).value;
+        event.preventDefault();
 
 
-      const telefone =
-        document.getElementById(
-          "telefone"
-        ).value;
+        const nome =
+          document.getElementById("nome").value;
 
 
-      const ambiente =
-        document.getElementById(
-          "ambiente"
-        ).value;
+        const telefone =
+          document.getElementById("telefone").value;
 
 
-      const cidade =
-        document.getElementById(
-          "cidade"
-        ).value;
+        const ambiente =
+          document.getElementById("ambiente").value;
 
 
-      const medidas =
-        document.getElementById(
-          "medidas"
-        ).value;
+        const cidade =
+          document.getElementById("cidade").value;
 
 
-      const detalhes =
-        document.getElementById(
-          "detalhes"
-        ).value;
+        const medidas =
+          document.getElementById("medidas").value;
 
 
-      const mensagem = `
+        const detalhes =
+          document.getElementById("detalhes").value;
+
+
+        const mensagem = `
 Olá! Gostaria de solicitar um orçamento.
 
 Nome: ${nome}
-
 Telefone: ${telefone}
-
 Ambiente: ${ambiente}
-
 Cidade: ${cidade || "Não informado"}
-
-Medidas:
-${medidas || "Não informado"}
+Medidas: ${medidas || "Não informado"}
 
 Detalhes:
 ${detalhes || "Não informado"}
-      `;
+        `;
 
 
-      abrirWhatsApp(
-        mensagem
-      );
+        abrirWhatsApp(
+          mensagem
+        );
 
-    }
-  );
+      }
+    );
 
 
-  /* =====================================
-     FILTROS
-     ===================================== */
+  /* FILTROS */
 
   const filtros =
-    document.querySelectorAll(
-      ".filter"
-    );
+    document.querySelectorAll(".filter");
 
 
   const projetos =
-    document.querySelectorAll(
-      ".project"
-    );
+    document.querySelectorAll(".project");
 
 
   filtros.forEach(
-    filtro => {
+    function(filtro) {
 
       filtro.addEventListener(
         "click",
         function() {
 
           filtros.forEach(
-            item =>
+            function(item) {
+
               item.classList.remove(
                 "active"
-              )
+              );
+
+            }
           );
 
 
@@ -2088,24 +2060,17 @@ ${detalhes || "Não informado"}
 
 
           projetos.forEach(
-            projeto => {
+            function(projeto) {
 
-              if (
+              const mostrar =
                 categoria === "todos" ||
-                projeto.dataset.category === categoria
-              ) {
+                projeto.dataset.category === categoria;
 
-                projeto.style.display =
-                  "block";
 
-              }
-
-              else {
-
-                projeto.style.display =
-                  "none";
-
-              }
+              projeto.style.display =
+                mostrar
+                ? "block"
+                : "none";
 
             }
           );
@@ -2117,12 +2082,9 @@ ${detalhes || "Não informado"}
   );
 
 
-  /* =====================================
-     FOTOS DAS GALERIAS
-     ===================================== */
+  /* FOTOS */
 
   const galerias = {
-
 
     cozinha: {
 
@@ -2140,14 +2102,13 @@ ${detalhes || "Não informado"}
 
         "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=88",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88"
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=88"
 
       ]
 
     },
-
 
     quarto: {
 
@@ -2165,14 +2126,13 @@ ${detalhes || "Não informado"}
 
         "https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88",
+        "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=1400&q=88"
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88"
 
       ]
 
     },
-
 
     sala: {
 
@@ -2188,16 +2148,15 @@ ${detalhes || "Não informado"}
 
         "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88",
-
         "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=88",
 
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=88"
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=88",
+
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88"
 
       ]
 
     },
-
 
     banheiro: {
 
@@ -2222,7 +2181,6 @@ ${detalhes || "Não informado"}
       ]
 
     },
-
 
     escritorio: {
 
@@ -2251,46 +2209,34 @@ ${detalhes || "Não informado"}
   };
 
 
-  /* =====================================
-     GALERIA
-     ===================================== */
+  /* GALERIA */
 
   const modal =
-    document.getElementById(
-      "galleryModal"
-    );
+    document.getElementById("galleryModal");
 
 
-  const imagem =
-    document.getElementById(
-      "galleryImage"
-    );
+  const galleryImage =
+    document.getElementById("galleryImage");
 
 
-  const titulo =
-    document.getElementById(
-      "galleryTitle"
-    );
+  const galleryTitle =
+    document.getElementById("galleryTitle");
 
 
-  const categoriaTexto =
-    document.getElementById(
-      "galleryCategory"
-    );
+  const galleryCategory =
+    document.getElementById("galleryCategory");
 
 
-  const miniaturas =
-    document.getElementById(
-      "galleryThumbs"
-    );
+  const galleryThumbs =
+    document.getElementById("galleryThumbs");
 
 
   let galeriaAtual = null;
 
-  let imagemAtual = 0;
+  let fotoAtual = 0;
 
 
-  function mostrarImagem(numero) {
+  function mostrarFoto(indice) {
 
     if (!galeriaAtual) {
       return;
@@ -2301,34 +2247,32 @@ ${detalhes || "Não informado"}
       galeriaAtual.fotos.length;
 
 
-    imagemAtual =
-      (numero + total) % total;
+    fotoAtual =
+      (indice + total) % total;
 
 
-    imagem.src =
+    galleryImage.src =
       galeriaAtual.fotos[
-        imagemAtual
+        fotoAtual
       ];
 
 
-    titulo.textContent =
+    galleryTitle.textContent =
       galeriaAtual.titulo;
 
 
-    categoriaTexto.textContent =
+    galleryCategory.textContent =
       galeriaAtual.categoria;
 
 
     document
-      .querySelectorAll(
-        ".gallery-thumb"
-      )
+      .querySelectorAll(".gallery-thumb")
       .forEach(
-        (thumb, index) => {
+        function(thumb, index) {
 
           thumb.classList.toggle(
             "active",
-            index === imagemAtual
+            index === fotoAtual
           );
 
         }
@@ -2337,9 +2281,7 @@ ${detalhes || "Não informado"}
   }
 
 
-  function abrirGaleria(
-    categoria
-  ) {
+  function abrirGaleria(categoria) {
 
     galeriaAtual =
       galerias[categoria];
@@ -2350,7 +2292,8 @@ ${detalhes || "Não informado"}
     }
 
 
-    miniaturas.innerHTML = "";
+    galleryThumbs.innerHTML =
+      "";
 
 
     galeriaAtual.fotos.forEach(
@@ -2366,17 +2309,18 @@ ${detalhes || "Não informado"}
           "gallery-thumb";
 
 
-        const img =
+        const imagem =
           document.createElement(
             "img"
           );
 
 
-        img.src = foto;
+        imagem.src =
+          foto;
 
 
         botao.appendChild(
-          img
+          imagem
         );
 
 
@@ -2384,7 +2328,7 @@ ${detalhes || "Não informado"}
           "click",
           function() {
 
-            mostrarImagem(
+            mostrarFoto(
               index
             );
 
@@ -2392,7 +2336,7 @@ ${detalhes || "Não informado"}
         );
 
 
-        miniaturas.appendChild(
+        galleryThumbs.appendChild(
           botao
         );
 
@@ -2400,7 +2344,7 @@ ${detalhes || "Não informado"}
     );
 
 
-    mostrarImagem(0);
+    mostrarFoto(0);
 
 
     modal.classList.add(
@@ -2430,7 +2374,7 @@ ${detalhes || "Não informado"}
 
 
   projetos.forEach(
-    projeto => {
+    function(projeto) {
 
       projeto.addEventListener(
         "click",
@@ -2447,40 +2391,40 @@ ${detalhes || "Não informado"}
   );
 
 
-  document.getElementById(
-    "galleryClose"
-  ).addEventListener(
-    "click",
-    fecharGaleria
-  );
+  document
+    .getElementById("galleryClose")
+    .addEventListener(
+      "click",
+      fecharGaleria
+    );
 
 
-  document.getElementById(
-    "galleryPrev"
-  ).addEventListener(
-    "click",
-    function() {
+  document
+    .getElementById("galleryPrev")
+    .addEventListener(
+      "click",
+      function() {
 
-      mostrarImagem(
-        imagemAtual - 1
-      );
+        mostrarFoto(
+          fotoAtual - 1
+        );
 
-    }
-  );
+      }
+    );
 
 
-  document.getElementById(
-    "galleryNext"
-  ).addEventListener(
-    "click",
-    function() {
+  document
+    .getElementById("galleryNext")
+    .addEventListener(
+      "click",
+      function() {
 
-      mostrarImagem(
-        imagemAtual + 1
-      );
+        mostrarFoto(
+          fotoAtual + 1
+        );
 
-    }
-  );
+      }
+    );
 
 
   modal.addEventListener(
@@ -2527,8 +2471,8 @@ ${detalhes || "Não informado"}
         event.key === "ArrowLeft"
       ) {
 
-        mostrarImagem(
-          imagemAtual - 1
+        mostrarFoto(
+          fotoAtual - 1
         );
 
       }
@@ -2538,8 +2482,8 @@ ${detalhes || "Não informado"}
         event.key === "ArrowRight"
       ) {
 
-        mostrarImagem(
-          imagemAtual + 1
+        mostrarFoto(
+          fotoAtual + 1
         );
 
       }
@@ -2548,15 +2492,12 @@ ${detalhes || "Não informado"}
   );
 
 
-  /* ANO */
-
   document.getElementById(
     "year"
   ).textContent =
     new Date().getFullYear();
 
 </script>
-
 
 </body>
 </html>
